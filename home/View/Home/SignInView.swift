@@ -72,11 +72,11 @@ struct SignInView: View {
             case .some(_):
                 
                 let userInfo = Auth.auth().currentUser
-                userInfo?.getIDToken(completion: { (res,err) in
+                userInfo?.getIDToken(completion: { (token,err) in
                     if err != nil {
                         print("Token error: \(err)")
                     } else {
-                        print("Token:  \(res)")
+                        print("Token:  \(token)")
                     }
                 })
                 let defaults = UserDefaults.standard

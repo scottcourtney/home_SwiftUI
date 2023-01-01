@@ -71,9 +71,24 @@ struct SignUpView: View {
                 print("Could not create account.")
                 signUpProcessing = false
             case .some(_):
-                print("User created")
+                let userInfo = Auth.auth().currentUser
+                userInfo?.getIDToken(completion: { (token,err) in
+                    if err != nil {
+                        print("Token error: \(err)")
+                    } else {
+                        print("Token:  \(token)")
+                    }
+                })
+                let defaults = UserDefaults.standard
+                defaults.set(userInfo?.uid, forKey: "UserId")
+                defaults.set(userInfo?.email, forKey: "UserEmail")
+                
+                print("User signed up")
+                print("User ID = \(userInfo?.uid)")
                 signUpProcessing = false
-                viewRouter.currentPage = .contentPage
+                withAnimation {
+                    viewRouter.currentPage = .contentPage
+                }
             }
         }
         
