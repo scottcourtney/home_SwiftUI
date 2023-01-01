@@ -1,0 +1,217 @@
+{
+    "document": {
+        "_id": "63ab3e6b94f5a1fc566a12da",
+        "user_id": "CH0FuxM5sBMOtRhlGbXCa6dTPZz1",
+        "UserInfo": {
+            "email": "test@test.com",
+            "firstName": "Scott",
+            "lastNmae": "Courtney"
+        },
+        "house": [{
+                "house_id": "63925daed836609d85d5da14",
+                "nickname": "1365 Black River Dr.",
+                "interior": {
+                    "Appliances": [
+                        {
+                            "nickname": "Microwave Toaster Oven",
+                            "appliance_id": "73925daed836609d85d5da18",
+                            "brand": "GE",
+                            "model": "3122",
+                            "website": "https://www.ge.com",
+                            "other": "Other important information"
+                        },
+                        {
+                            "nickname": "Refrigerator",
+                            "appliance_id": "73925daed836609d85d5da19",
+                            "brand": "GE",
+                            "model": "3122",
+                            "website": "https://www.ge.com",
+                            "other": "Other important information"
+                        },
+                        {
+                            "nickname": "Stove",
+                            "appliance_id": "73925daed836609d85d5da20",
+                            "brand": "GE",
+                            "model": "3122",
+                            "website": "https://www.ge.com",
+                            "other": "Other important information"
+                        },
+                        {
+                            "nickname": "Dishwasher",
+                            "appliance_id": "73925daed836609d85d5da21",
+                            "brand": "GE",
+                            "model": "3122",
+                            "website": "https://www.ge.com",
+                            "other": "Other important information"
+                        }
+
+                    ],
+                    "Rooms": [
+                        {
+                            "Flooring": {
+                                "floorType": "Tile",
+                                "floorCollectionName": "This collection",
+                                "floorStyleNumber": "Cherry",
+                                "floorBrand": "Lowes brand",
+                                "groutColor": "Delorian Green"
+
+                            },
+                            "roomType": "bedroom",
+                            "Ceiling": {
+                                "ceilingPaintBrand": "Sherwin Williams",
+                                "ceilingPaintFinish": "Satin",
+                                "ceilingPaintColor": "White"
+                            },
+                            "nickname": "Sullys Room",
+                            "room_id": "73925daed836609d85d5da18",
+                            "Walls": {
+                                "wallType": "Sheetrock",
+                                "wallPaintBrand": "Sherwin Williams",
+                                "wallPaintFinish": "Satin",
+                                "wallPaintColor": "Blue"
+                            }
+                        },
+                        {
+                            "Flooring": {
+                                "floorType": "Wood",
+                                "floorCollectionName": "Lowes",
+                                "floorStyleNumber": "White Oak",
+                                "floorBrand": "Lowes brand"
+                            },
+                            "roomType": "bedroom",
+                            "Ceiling": {
+                                "ceilingPaintBrand": "Sherwin Williams",
+                                "ceilingPaintFinish": "Satin",
+                                "ceilingPaintColor": "White"
+                            },
+                            "nickname": "Master Room",
+                            "room_id": "73925daed836609d85d5da19",
+                            "Walls": {
+                                "wallType": "Tile",
+                                "wallPaintBrand": "Sherwin Williams",
+                                "wallPaintFinish": "Satin",
+                                "wallPaintColor": "Purple",
+                                "groutColor": "Delorian Gray"
+                            }
+                        }
+                    ]
+                },
+                "exterior": {
+
+                }
+            },
+            {
+                "house_id": "63925daed836609d85d5da15",
+                "nickname": "1367 Black River Dr.",
+                "interior": {
+                    "Appliances" : [],
+                    "Rooms": [{
+                        "Flooring": {
+                            "floorType": "Tile",
+                            "floorCollectionName": "Lowes",
+                            "floorStyleNumber": "Cherry",
+                            "floorBrand": "Lowes brand",
+                            "groutColor": "Delorian Green"
+                        },
+                            "roomType": "bedroom",
+                            "Ceiling": {
+                                "ceilingPaintBrand": "Sherwin Williams",
+                                "ceilingPaintFinish": "Satin",
+                                "ceilingPaintColor": "White"
+                            },
+                            "nickname": "Test6 Room",
+                            "room_id": "73925daed836609d85d5da18",
+                            "Walls": {
+                                "wallType": "Sheetrock",
+                                "wallPaintBrand": "Sherwin Williams",
+                                "wallPaintFinish": "Satin",
+                                "wallPaintColor": "Green"
+                            }
+                        },
+                        {
+                            "Flooring": {
+                                "floorType": "Carpet",
+                                "floorCollectionName": "Lowes",
+                                "floorStyleNumber": "Cherry",
+                                "floorBrand": "Lowes brand"
+                            },
+                            "roomType": "bedroom",
+                            "Ceiling": {
+                                "ceilingPaintBrand": "Sherwin Williams",
+                                "ceilingPaintFinish": "Satin",
+                                "ceilingPaintColor": "White"
+                            },
+                            "nickname": "Test5 Room",
+                            "room_id": "73925daed836609d85d5da19",
+                            "Walls": {
+                                "wallType": "Tile",
+                                "wallPaintBrand": "Sherwin Williams",
+                                "wallPaintFinish": "Satin",
+                                "wallPaintColor": "Green",
+                                "groutColor": "Delorian Green"
+                            }
+                        }
+                    ]
+                },
+                "exterior": {}
+            },
+            {
+                "house_id": "63925daed836609d85d5da18",
+                "nickname": "1368 Black River Dr.",
+                "interior": {
+                    "Appliances" : [],
+                    "Rooms": [{
+                        "Flooring": {
+                            "floorType": "Carpet",
+                            "floorCollectionName": "Lowes",
+                            "floorStyleNumber": "Cherry",
+                            "floorBrand": "Lowes brand"
+                        },
+                            "roomType": "bedroom",
+                            "Ceiling": {
+                                "ceilingPaintBrand": "Sherwin Williams",
+                                "ceilingPaintFinish": "Satin",
+                                "ceilingPaintColor": "White"
+                            },
+                            "nickname": "Test11 Room",
+                            "room_id": "73925daed836609d85d5da18",
+                            "Walls": {
+                                "wallType": "Tile",
+                                "wallPaintBrand": "Sherwin Williams",
+                                "wallPaintFinish": "Satin",
+                                "wallPaintColor": "Green",
+                                "groutColor": "Delorian Gray"
+                            }
+                        },
+                        {
+                            "Flooring": {
+                                "floorType": "Carpet",
+                                "floorCollectionName": "Lowes",
+                                "floorStyleNumber": "Cherry",
+                                "floorBrand": "Lowes brand"
+                            },
+                            "roomType": "bedroom",
+                            "Ceiling": {
+                                "ceilingPaintBrand": "Sherwin Williams",
+                                "ceilingPaintFinish": "Satin",
+                                "ceilingPaintColor": "White"
+                            },
+                            "nickname": "Test22 Room",
+                            "room_id": "73925daed836609d85d5da19",
+                            "Walls": {
+                                "wallType": "Tile",
+                                "wallPaintBrand": "Sherwin Williams",
+                                "wallPaintFinish": "Satin",
+                                "wallPaintColor": "Green",
+                                "groutColor": "Delorian Gray"
+                            }
+                        }
+                    ]
+                },
+                "exterior": {
+
+                }
+            }
+        ]
+    }
+}
