@@ -21,8 +21,7 @@ class Api : ObservableObject {
             "database": DATABASE,
             "dataSource": DATASOURCE,
             "filter": [
-                "userInfo.user_id":     userDefaults.object(forKey: "myKey")
-
+                "userInfo.user_id": userId
             ]
         ]
  
