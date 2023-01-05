@@ -1,11 +1,13 @@
 {
     "document": {
         "_id": "63ab3e6b94f5a1fc566a12da",
-        "user_id": "CH0FuxM5sBMOtRhlGbXCa6dTPZz1",
-        "UserInfo": {
+        "userInfo": {
+            "user_id": "CH0FuxM5sBMOtRhlGbXCa6dTPZz1",
             "email": "test@test.com",
+            "uid": "CH0FuxM5sBMOtRhlGbXCa6dTPZz1",
+            "displayName": "My display name",
             "firstName": "Scott",
-            "lastNmae": "Courtney"
+            "lastName": "Courtney"
         },
         "house": [{
                 "house_id": "63925daed836609d85d5da14",

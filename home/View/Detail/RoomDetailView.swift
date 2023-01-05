@@ -9,6 +9,8 @@ import SwiftUI
 
 struct RoomDetailView: View {
     // MARK: - PROPERTY
+    @Environment(\.dismiss) var dismiss
+    @State private var isEditing = false
 
     let room: Room
 
@@ -22,7 +24,6 @@ struct RoomDetailView: View {
                                 .font(.footnote)
                                 .foregroundColor(.gray)
                             Text(room.walls?.wallPaintBrand ?? "N/A")
-
                         } icon: {}
                         Label {
                             Text("Paint Finish")
@@ -106,13 +107,30 @@ struct RoomDetailView: View {
             }//: VSTACK
             .navigationTitle(room.nickname!)
 
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarTrailing){
-                    Button("Edit", action: {
-                        print("Edit Button Tapped")
-                    })//: BUTTON
-                }
-            }
+//            .toolbar {
+//                if isEditing {
+//                    ToolbarItemGroup(placement: .navigationBarTrailing){
+//                        Button("Save", action: {
+//                            isEditing.toggle()
+//                            dismiss()
+//                            print("Save Button Tapped")
+//                        })//: BUTTON
+//                    }
+//                    ToolbarItemGroup(placement: .navigationBarLeading){
+//                        Button("Cancel", action: {
+//                            isEditing.toggle()
+//                            print("Cancel Button Tapped")
+//                        })//: BUTTON
+//                    }
+//                } else {
+//                    ToolbarItemGroup(placement: .navigationBarTrailing){
+//                        Button("Edit", action: {
+//                            isEditing.toggle()
+//                            print("Edit Button Tapped")
+//                        })//: BUTTON
+//                    }
+//                }
+//            }
         }//: NAVIGATIONVIEW
     }
 }

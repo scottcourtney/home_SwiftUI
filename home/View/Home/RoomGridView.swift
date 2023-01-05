@@ -10,12 +10,10 @@ import CodeScanner
 
 struct RoomGridView: View {
     // MARK: - PROPERTIES
-    @StateObject private var model = ScannerHandler()
     
     @Binding var houseIndex: Int
     
     @State private var position: Int = 0
-    @State private var showScanner: Bool = false
     
     // MARK: - BODY
     
@@ -30,9 +28,7 @@ struct RoomGridView: View {
                         ForEach((users.document?.house?[self.houseIndex].interior?.rooms)!) { room in
                             RoomView(room: room)
                         }
-                        Button(action: {
-                            showScanner.toggle()
-                        }, label: {
+                        Button(action: {}, label: {
                             HStack(alignment: .center, spacing: 6) {
                                 Image(systemName: "house.circle.fill")
                                     .renderingMode(.template)
@@ -54,10 +50,6 @@ struct RoomGridView: View {
                                     .stroke(Color.gray, lineWidth: 1)
                             )
                         })//: BUTTON
-                        .sheet(isPresented: $showScanner) {
-                            ScannerView(image: model.frame)
-                        }
-                        
                     }
                 })//: GRID
                 .frame(height: 140)

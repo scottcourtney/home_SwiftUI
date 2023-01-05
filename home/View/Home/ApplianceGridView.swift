@@ -11,6 +11,8 @@ struct ApplianceGridView: View {
     // MARK: - PROPERTIES
     
     @Binding var houseIndex: Int
+    @State private var showFormView: Bool = false
+
 
     // MARK: - BODY
     
@@ -25,7 +27,9 @@ struct ApplianceGridView: View {
                     ForEach((users.document?.house?[self.houseIndex].interior?.appliances)!) { appliance in
                         ApplianceView(appliance: appliance)
                     }
-                    Button(action: {}, label: {
+                    Button(action: {
+                        showFormView.toggle()
+                    }, label: {
                         HStack(alignment: .center, spacing: 6) {
                             Image(systemName: "house.circle.fill")
                                 .renderingMode(.template)
@@ -47,6 +51,9 @@ struct ApplianceGridView: View {
                                 .stroke(Color.gray, lineWidth: 1)
                         )
                     })//: BUTTON
+                    .sheet(isPresented: $showFormView) {
+                        ApplianceFormView(houseIndex: $houseIndex)
+                    }
                 }
             })//: GRID
             .frame(height: 140)

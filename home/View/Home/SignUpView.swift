@@ -9,7 +9,7 @@ import SwiftUI
 import Firebase
 
 struct SignUpView: View {
-    
+
     @EnvironmentObject var viewRouter: ViewRouter
     
     @State var email = ""
@@ -96,11 +96,11 @@ struct SignUpView: View {
     
 }
 
-struct SignUpView_Previews: PreviewProvider {
-    static var previews: some View {
-        SignUpView()
-    }
-}
+//struct SignUpView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SignUpView()
+//    }
+//}
 
 //struct LogoView: View {
 //    var body: some View {

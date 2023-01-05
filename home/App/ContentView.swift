@@ -11,7 +11,7 @@ struct ContentView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var viewRouter: ViewRouter
     
-    @State var users: User?
+//    @State var users: User?
 
     @ObservedObject var houseIndex = HouseIndex()
 
@@ -53,9 +53,9 @@ struct ContentView: View {
 }
 
 // MARK: - PREVIEW
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-            .environmentObject(HouseIndex())
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//            .environmentObject(HouseIndex())
+//    }
+//}

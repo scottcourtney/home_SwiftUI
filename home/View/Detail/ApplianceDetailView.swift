@@ -54,8 +54,8 @@ struct ApplianceDetailView: View {
             }//: VSTACK
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing){
-                    Button("Edit", action: {
-                        print("Edit Button Tapped")
+                    Button("Save", action: {
+                        print("Save Button Tapped")
                     })//: BUTTON
                 }
             }

@@ -11,6 +11,7 @@ struct RoomView: View {
     // MARK: - PROPERTY
     
     @State var isModal: Bool = false
+    
     let room: Room
 
     // MARK: - BODY

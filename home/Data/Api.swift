@@ -7,24 +7,28 @@
 
 import Foundation
 import Alamofire
+import RealmSwift
 
-class Api : ObservableObject{
-    @Published var users: User?
+class Api : ObservableObject {
     
-    func readData(completion:@escaping (User) -> ()) {
+    @Published var users: User?
+    @Published private var _isLoading: Bool = false
+
+    
+    func getUserData(token: String, userId: String, completion: @escaping (User) -> ()) {
         let params: Parameters = [
             "collection": COLLECTION,
             "database": DATABASE,
             "dataSource": DATASOURCE,
             "filter": [
-                "user_id": "CH0FuxM5sBMOtRhlGbXCa6dTPZz1"
+                "userInfo.user_id":     userDefaults.object(forKey: "myKey")
+
             ]
         ]
  
         let headers: HTTPHeaders = [
             "Content-Type": "application/json",
-            "email": EMAIL,
-            "password": PASSWORD
+            "jwtTokenString": token
         ]
         
         AF.request(API_URL + "/findOne", method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200 ..< 299).responseData { response in
@@ -32,6 +36,7 @@ class Api : ObservableObject{
             case .success(let userData):
                 do {
                     let usersData = try! JSONDecoder().decode(User.self, from: userData)
+                    self.users = usersData
                     
                     guard let jsonObject = try JSONSerialization.jsonObject(with: userData) as? [String: Any] else {
                         print("Error: Cannot convert data to JSON object")
@@ -113,7 +118,7 @@ class Api : ObservableObject{
             "email": EMAIL,
             "password": PASSWORD
         ]
-        
+         
         AF.request(API_URL + "/updateOne", method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
             .responseJSON { response in
                 print(response)
@@ -122,6 +127,56 @@ class Api : ObservableObject{
     }
     
     // ADD HOUSE
+    // ADD APPLIANCE
+    
+    func addAppliance(
+        token: String,
+        userId: String,
+        houseId: String,
+        nickname: String,
+        brand: String,
+        model: String,
+        website: String,
+        otherInformation: String,
+        completion: @escaping (Bool) -> ()) {
+            
+            let params: Parameters = [
+                "collection": COLLECTION,
+                "database": DATABASE,
+                "dataSource": DATASOURCE,
+                "filter": [
+                    "userInfo.user_id": userId,
+                    "house.house_id": ["$oid": houseId]
+                ],
+                "update": [
+                    "$push": [ "house.$.interior.Appliances":
+                                [
+                                    "nickname": nickname,
+                                    "appliance_id": UUID().uuidString,
+                                    "brand": brand,
+                                    "model": model,
+                                    "website": website,
+                                    "other": otherInformation
+                                ]
+                             ]
+                ]
+            ]
+            
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json",
+                "email": EMAIL,
+                "password": PASSWORD
+            ]
+            
+            AF.request(API_URL + "/updateOne", method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
+                .responseJSON { response in
+                    print(response)
+                    DispatchQueue.main.async {
+                        completion(true)
+                    }
+                }
+        }
+    
     // READ DATA
     // DELETE DATA
     // UPDATE DATA

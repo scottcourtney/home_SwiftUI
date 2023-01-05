@@ -12,17 +12,33 @@ struct User: Codable {
     let document: Document?
 }
 
-// MARK: - Document
-struct Document: Codable, Identifiable {
-    let id, userID: String?
-    let house: [House]?
-    let userInfo: UserInfo?
+// MARK: - UserInfo
+struct UserInfo: Codable {
+    
+    var userID, email, uid, displayName: String?
+    var firstName, lastName: String?
+    
+    init(uid: String, displayName: String?) {
+            self.uid = uid
+//            self.email = email
+            self.displayName = displayName
+        }
 
     enum CodingKeys: String, CodingKey {
-        case id = "_id"
         case userID = "user_id"
-        case house
-        case userInfo = "UserInfo"
+        case email, uid, displayName, firstName, lastName
     }
+}
+
+// MARK: - Document
+struct Document: Codable, Identifiable {
+    let id: String?
+    let userInfo: UserInfo?
+    let house: [House]?
+
+    enum CodingKeys: String, CodingKey {
+           case id = "_id"
+           case userInfo, house
+       }
 }
 

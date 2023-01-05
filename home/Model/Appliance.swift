@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import RealmSwift
 
 // MARK: - Appliance
 struct Appliance: Codable, Identifiable {
-    let id, nickname, brand, model, website, other: String?
+    let id: UUID
+    let nickname, brand, model, website, other: String?
 
     
     enum CodingKeys: String, CodingKey {

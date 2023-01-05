@@ -9,7 +9,7 @@ import SwiftUI
 import Firebase
 
 struct SignInView: View {
-    
+        
     @EnvironmentObject var viewRouter: ViewRouter
     
     @State var email = ""
@@ -17,6 +17,9 @@ struct SignInView: View {
     
     @State var signInProcessing = false
     @State var signInErrorMessage = ""
+    @State var token = ""
+    @State var userId = ""
+
     
     var body: some View {
         VStack(spacing: 15) {
@@ -32,7 +35,7 @@ struct SignInView: View {
                     .background(.thinMaterial)
                     .cornerRadius(10)
             }
-                .disabled(!signInProcessing && !email.isEmpty && !password.isEmpty ? false : true)
+            .disabled(!signInProcessing && !email.isEmpty && !password.isEmpty ? false : true)
             if signInProcessing {
                 ProgressView()
             }
@@ -49,9 +52,9 @@ struct SignInView: View {
                     Text("Sign Up")
                 }
             }
-                .opacity(0.9)
+            .opacity(0.9)
         }
-            .padding()
+        .padding()
     }
     
     func signInUser(userEmail: String, userPassword: String) {
@@ -72,11 +75,21 @@ struct SignInView: View {
             case .some(_):
                 
                 let userInfo = Auth.auth().currentUser
+                self.userId = userInfo!.uid
+                
                 userInfo?.getIDToken(completion: { (token,err) in
                     if err != nil {
-                        print("Token error: \(err)")
+                        print("Token error: \(String(describing: err))")
                     } else {
-                        print("Token:  \(token)")
+                        print("Token:  \(String(describing: token))")
+                        if let token = token {
+                            self.token = token
+                                Api().getUserData(token: token, userId: userId) { (result) in
+                                    print(result)
+                                }
+                        
+                        }
+                        
                     }
                 })
                 let defaults = UserDefaults.standard
@@ -84,7 +97,7 @@ struct SignInView: View {
                 defaults.set(userInfo?.email, forKey: "UserEmail")
                 
                 print("User signed in")
-                print("User ID = \(userInfo?.uid)")
+                print("User ID = \(String(describing: userInfo?.uid))")
                 signInProcessing = false
                 withAnimation {
                     viewRouter.currentPage = .contentPage
@@ -92,15 +105,15 @@ struct SignInView: View {
             }
             
         }
-
+        
     }
 }
 
-struct SignInView_Previews: PreviewProvider {
-    static var previews: some View {
-        SignInView()
-    }
-}
+//struct SignInView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SignInView()
+//    }
+//}
 
 struct SignInCredentialFields: View {
     
