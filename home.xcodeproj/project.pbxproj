@@ -13,7 +13,6 @@
 		203C1F6A29560E1F00BD9C5D /* Ceiling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203C1F6929560E1F00BD9C5D /* Ceiling.swift */; };
 		203C1F6C29560E2800BD9C5D /* Flooring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203C1F6B29560E2800BD9C5D /* Flooring.swift */; };
 		203C1F6E29560E3100BD9C5D /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203C1F6D29560E3100BD9C5D /* Wall.swift */; };
-		203C1F7029560F0D00BD9C5D /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203C1F6F29560F0D00BD9C5D /* UserInfo.swift */; };
 		203C1F722956124F00BD9C5D /* HouseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203C1F712956124F00BD9C5D /* HouseView.swift */; };
 		203C1F76295614B100BD9C5D /* HouseTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203C1F75295614B100BD9C5D /* HouseTabView.swift */; };
 		203C1F782956186E00BD9C5D /* House.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203C1F772956186E00BD9C5D /* House.swift */; };
@@ -33,10 +32,7 @@
 		203C1FAB295DEC3400BD9C5D /* ApplianceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203C1FAA295DEC3400BD9C5D /* ApplianceView.swift */; };
 		203C1FAD295F3E1300BD9C5D /* ApplianceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203C1FAC295F3E1300BD9C5D /* ApplianceDetailView.swift */; };
 		203C1FB0296084D800BD9C5D /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 203C1FAF296084D800BD9C5D /* CodeScanner */; };
-		203C1FBF29609A6E00BD9C5D /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203C1FBE29609A6E00BD9C5D /* Scanner.swift */; };
-		203C1FC229609AFA00BD9C5D /* ScannerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203C1FC129609AFA00BD9C5D /* ScannerDelegate.swift */; };
 		203C1FC429609E1600BD9C5D /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203C1FC329609E1600BD9C5D /* ScannerView.swift */; };
-		203C1FC62960A58000BD9C5D /* ScannerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203C1FC52960A58000BD9C5D /* ScannerHandler.swift */; };
 		205D29CE294128F3009DE988 /* homeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205D29CD294128F3009DE988 /* homeApp.swift */; };
 		205D29D0294128F3009DE988 /* MotherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205D29CF294128F3009DE988 /* MotherView.swift */; };
 		205D29D2294128F6009DE988 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 205D29D1294128F6009DE988 /* Assets.xcassets */; };
@@ -81,7 +77,6 @@
 		203C1F6929560E1F00BD9C5D /* Ceiling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ceiling.swift; sourceTree = "<group>"; };
 		203C1F6B29560E2800BD9C5D /* Flooring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flooring.swift; sourceTree = "<group>"; };
 		203C1F6D29560E3100BD9C5D /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
-		203C1F6F29560F0D00BD9C5D /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		203C1F712956124F00BD9C5D /* HouseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseView.swift; sourceTree = "<group>"; };
 		203C1F75295614B100BD9C5D /* HouseTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseTabView.swift; sourceTree = "<group>"; };
 		203C1F772956186E00BD9C5D /* House.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = House.swift; sourceTree = "<group>"; };
@@ -100,10 +95,7 @@
 		203C1FA8295DEB5000BD9C5D /* Appliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appliance.swift; sourceTree = "<group>"; };
 		203C1FAA295DEC3400BD9C5D /* ApplianceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceView.swift; sourceTree = "<group>"; };
 		203C1FAC295F3E1300BD9C5D /* ApplianceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceDetailView.swift; sourceTree = "<group>"; };
-		203C1FBE29609A6E00BD9C5D /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
-		203C1FC129609AFA00BD9C5D /* ScannerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerDelegate.swift; sourceTree = "<group>"; };
 		203C1FC329609E1600BD9C5D /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
-		203C1FC52960A58000BD9C5D /* ScannerHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerHandler.swift; sourceTree = "<group>"; };
 		205D29CA294128F3009DE988 /* home.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = home.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		205D29CD294128F3009DE988 /* homeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeApp.swift; sourceTree = "<group>"; };
 		205D29CF294128F3009DE988 /* MotherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotherView.swift; sourceTree = "<group>"; };
@@ -162,14 +154,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		203C1FC029609AEA00BD9C5D /* Delegate */ = {
-			isa = PBXGroup;
-			children = (
-				203C1FC129609AFA00BD9C5D /* ScannerDelegate.swift */,
-			);
-			path = Delegate;
-			sourceTree = "<group>";
-		};
 		205D29C1294128F3009DE988 = {
 			isa = PBXGroup;
 			children = (
@@ -195,7 +179,6 @@
 		205D29CC294128F3009DE988 /* home */ = {
 			isa = PBXGroup;
 			children = (
-				203C1FC029609AEA00BD9C5D /* Delegate */,
 				203C1F97295CE44C00BD9C5D /* home.entitlements */,
 				203C1F95295CE2A900BD9C5D /* GoogleService-Info.plist */,
 				205D29F729423BD2009DE988 /* App */,
@@ -265,11 +248,9 @@
 				203C1F6929560E1F00BD9C5D /* Ceiling.swift */,
 				203C1F6B29560E2800BD9C5D /* Flooring.swift */,
 				203C1F6D29560E3100BD9C5D /* Wall.swift */,
-				203C1F6F29560F0D00BD9C5D /* UserInfo.swift */,
 				203C1F772956186E00BD9C5D /* House.swift */,
 				203C1F8F29565B7100BD9C5D /* Exterior.swift */,
 				203C1FA8295DEB5000BD9C5D /* Appliance.swift */,
-				203C1FBE29609A6E00BD9C5D /* Scanner.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -278,7 +259,6 @@
 			isa = PBXGroup;
 			children = (
 				205D2A002942658B009DE988 /* Constant.swift */,
-				203C1FC52960A58000BD9C5D /* ScannerHandler.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -603,7 +583,6 @@
 				203C1FA7295DE7E000BD9C5D /* ApplianceGridView.swift in Sources */,
 				205D2A0F2948BECD009DE988 /* RoomView.swift in Sources */,
 				205D2A0D29428D3E009DE988 /* CodableBundleExtension.swift in Sources */,
-				203C1FC62960A58000BD9C5D /* ScannerHandler.swift in Sources */,
 				203C1FC429609E1600BD9C5D /* ScannerView.swift in Sources */,
 				203C1F6829560DFE00BD9C5D /* Room.swift in Sources */,
 				203C1FAD295F3E1300BD9C5D /* ApplianceDetailView.swift in Sources */,
@@ -616,12 +595,9 @@
 				203C1F8E29564B8F00BD9C5D /* RoomDetailView.swift in Sources */,
 				205D29D0294128F3009DE988 /* MotherView.swift in Sources */,
 				203C1F782956186E00BD9C5D /* House.swift in Sources */,
-				203C1F7029560F0D00BD9C5D /* UserInfo.swift in Sources */,
 				203C1FA9295DEB5000BD9C5D /* Appliance.swift in Sources */,
 				203C1F6A29560E1F00BD9C5D /* Ceiling.swift in Sources */,
-				203C1FC229609AFA00BD9C5D /* ScannerDelegate.swift in Sources */,
 				205D2A0B29428B2F009DE988 /* User.swift in Sources */,
-				203C1FBF29609A6E00BD9C5D /* Scanner.swift in Sources */,
 				203C1FA5295CEADA00BD9C5D /* ContentView.swift in Sources */,
 				205D2A092942728C009DE988 /* LogoView.swift in Sources */,
 				203C1F6E29560E3100BD9C5D /* Wall.swift in Sources */,
