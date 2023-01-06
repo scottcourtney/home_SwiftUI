@@ -32,7 +32,6 @@
 		203C1FAB295DEC3400BD9C5D /* ApplianceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203C1FAA295DEC3400BD9C5D /* ApplianceView.swift */; };
 		203C1FAD295F3E1300BD9C5D /* ApplianceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203C1FAC295F3E1300BD9C5D /* ApplianceDetailView.swift */; };
 		203C1FB0296084D800BD9C5D /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 203C1FAF296084D800BD9C5D /* CodeScanner */; };
-		203C1FC429609E1600BD9C5D /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203C1FC329609E1600BD9C5D /* ScannerView.swift */; };
 		205D29CE294128F3009DE988 /* homeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205D29CD294128F3009DE988 /* homeApp.swift */; };
 		205D29D0294128F3009DE988 /* MotherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205D29CF294128F3009DE988 /* MotherView.swift */; };
 		205D29D2294128F6009DE988 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 205D29D1294128F6009DE988 /* Assets.xcassets */; };
@@ -95,7 +94,6 @@
 		203C1FA8295DEB5000BD9C5D /* Appliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appliance.swift; sourceTree = "<group>"; };
 		203C1FAA295DEC3400BD9C5D /* ApplianceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceView.swift; sourceTree = "<group>"; };
 		203C1FAC295F3E1300BD9C5D /* ApplianceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplianceDetailView.swift; sourceTree = "<group>"; };
-		203C1FC329609E1600BD9C5D /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		205D29CA294128F3009DE988 /* home.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = home.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		205D29CD294128F3009DE988 /* homeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeApp.swift; sourceTree = "<group>"; };
 		205D29CF294128F3009DE988 /* MotherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotherView.swift; sourceTree = "<group>"; };
@@ -295,7 +293,6 @@
 				203C1F9D295CE7F500BD9C5D /* SignUpView.swift */,
 				203C1FA6295DE7E000BD9C5D /* ApplianceGridView.swift */,
 				203C1FAA295DEC3400BD9C5D /* ApplianceView.swift */,
-				203C1FC329609E1600BD9C5D /* ScannerView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -583,7 +580,6 @@
 				203C1FA7295DE7E000BD9C5D /* ApplianceGridView.swift in Sources */,
 				205D2A0F2948BECD009DE988 /* RoomView.swift in Sources */,
 				205D2A0D29428D3E009DE988 /* CodableBundleExtension.swift in Sources */,
-				203C1FC429609E1600BD9C5D /* ScannerView.swift in Sources */,
 				203C1F6829560DFE00BD9C5D /* Room.swift in Sources */,
 				203C1FAD295F3E1300BD9C5D /* ApplianceDetailView.swift in Sources */,
 				203C1FAB295DEC3400BD9C5D /* ApplianceView.swift in Sources */,
