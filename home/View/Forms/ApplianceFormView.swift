@@ -57,7 +57,6 @@ struct ApplianceFormView: View {
                 ToolbarItemGroup(placement: .navigationBarTrailing){
                     Button("Save", action: {
                         Api().addAppliance(
-                            token: SignInView().token,
                             userId: (users.document?.userInfo?.userID)!,
                             houseId: (users.document?.house?[self.houseIndex].id)!,
                             nickname: nickname,
@@ -66,14 +65,15 @@ struct ApplianceFormView: View {
                             website: website,
                             otherInformation: otherInformation) { (result) in
                                 if result == true {
-                                    Api().getUserData(token: token, userId: (users.document?.userInfo?.userID)!) { (result) in
+                                    Api().getUserData(userId: (users.document?.userInfo?.userID)!) { (result) in
                                         print(result)
+                                        withAnimation {
+                                            dismiss()
+                                        }
                                     }
                                 }
                             }
-                        withAnimation {
-                            dismiss()
-                        }
+                        
                         print("Edit Button Tapped")
                     })//: BUTTON
                     

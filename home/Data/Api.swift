@@ -7,15 +7,21 @@
 
 import Foundation
 import Alamofire
-import RealmSwift
+import SwiftUI
 
 class Api : ObservableObject {
     
     @Published var users: User?
     @Published private var _isLoading: Bool = false
 
+    func getToken() -> String {
+        let data = KeychainService.standard.read(service: "access-token", account: "firebase")!
+        let jwtTokenString = String(data: data, encoding: .utf8)!
+        return jwtTokenString
+    }
     
-    func getUserData(token: String, userId: String, completion: @escaping (User) -> ()) {
+    func getUserData(userId: String, completion: @escaping (User) -> ()) {
+        let jwtTokenString = getToken()
         let params: Parameters = [
             "collection": COLLECTION,
             "database": DATABASE,
@@ -27,7 +33,7 @@ class Api : ObservableObject {
  
         let headers: HTTPHeaders = [
             "Content-Type": "application/json",
-            "jwtTokenString": token
+            "jwtTokenString": jwtTokenString
         ]
         
         AF.request(API_URL + "/findOne", method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200 ..< 299).responseData { response in
@@ -77,7 +83,7 @@ class Api : ObservableObject {
     // ADD ROOM
     
     func addRoom() {
-        
+        let jwtTokenString = getToken()
         let params: Parameters = [
             "collection": COLLECTION,
             "database": DATABASE,
@@ -114,8 +120,7 @@ class Api : ObservableObject {
         
         let headers: HTTPHeaders = [
             "Content-Type": "application/json",
-            "email": EMAIL,
-            "password": PASSWORD
+            "jwtTokenString": jwtTokenString
         ]
          
         AF.request(API_URL + "/updateOne", method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
@@ -129,7 +134,6 @@ class Api : ObservableObject {
     // ADD APPLIANCE
     
     func addAppliance(
-        token: String,
         userId: String,
         houseId: String,
         nickname: String,
@@ -138,7 +142,8 @@ class Api : ObservableObject {
         website: String,
         otherInformation: String,
         completion: @escaping (Bool) -> ()) {
-            
+            let jwtTokenString = getToken()
+
             let params: Parameters = [
                 "collection": COLLECTION,
                 "database": DATABASE,
@@ -163,8 +168,7 @@ class Api : ObservableObject {
             
             let headers: HTTPHeaders = [
                 "Content-Type": "application/json",
-                "email": EMAIL,
-                "password": PASSWORD
+                "jwtTokenString": jwtTokenString
             ]
             
             AF.request(API_URL + "/updateOne", method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)

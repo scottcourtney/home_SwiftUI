@@ -56,7 +56,7 @@ struct SignInView: View {
         }
         .padding()
     }
-    
+
     func signInUser(userEmail: String, userPassword: String) {
         
         signInProcessing = true
@@ -83,9 +83,14 @@ struct SignInView: View {
                     } else {
                         print("Token:  \(String(describing: token))")
                         if let token = token {
-                            self.token = token
-                                Api().getUserData(token: token, userId: userId) { (result) in
+                            let accessToken = token
+                            let data = Data(accessToken.utf8)
+                            KeychainService.standard.save(data, service: "access-token", account: "firebase")
+                            Api().getUserData(userId: userId) { (result) in
                                     print(result)
+                                    withAnimation {
+                                        viewRouter.currentPage = .contentPage
+                                    }
                                 }
                         
                         }
@@ -99,9 +104,7 @@ struct SignInView: View {
                 print("User signed in")
                 print("User ID = \(String(describing: userInfo?.uid))")
                 signInProcessing = false
-                withAnimation {
-                    viewRouter.currentPage = .contentPage
-                }
+                
             }
             
         }

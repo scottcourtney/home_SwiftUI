@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import RealmSwift
 
 // MARK: - Appliance
 struct Appliance: Codable, Identifiable {
