@@ -14,7 +14,8 @@ struct RoomGridView: View {
     @Binding var houseIndex: Int
     
     @State private var position: Int = 0
-    
+    @State private var rooms: [Room] = []
+
     // MARK: - BODY
     
     var body: some View {
@@ -25,7 +26,7 @@ struct RoomGridView: View {
                         header: SectionView(title: "Rooms", rotateClockwise: false),
                         footer: SectionView(title: "Rooms", rotateClockwise: true)
                     ) {
-                        ForEach((users.document?.house?[self.houseIndex].interior?.rooms)!) { room in
+                        ForEach(rooms) { room in
                             RoomView(room: room)
                         }
                         Button(action: {}, label: {
@@ -61,7 +62,13 @@ struct RoomGridView: View {
                     }
                 }
             }
-        })
+        }).onAppear(perform: readFile)
+    }
+    
+    func readFile() {
+        if let jsonData: User = Bundle.main.decode("data.json") {
+            self.rooms = (jsonData.document?.house![self.houseIndex].interior?.rooms)!
+        }
     }
 }
 

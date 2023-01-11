@@ -38,8 +38,10 @@ struct ApplianceDetailView: View {
                             HStack {
                                 Text(appliance.website ?? "")
                                 Spacer()
-                                Link(destination: URL(string: appliance.website ?? "")!) {
-                                    Image(systemName: "paperplane.fill")
+                                if appliance.website != "" {
+                                    Link(destination: URL(string: appliance.website ?? "")!) {
+                                        Image(systemName: "paperplane.fill")
+                                    }
                                 }
                             }//: HSTACK
                         } icon: {}

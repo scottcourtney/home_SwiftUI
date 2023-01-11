@@ -9,9 +9,9 @@ import Foundation
 import Alamofire
 import SwiftUI
 
-class Api : ObservableObject {
+class ApiService : ObservableObject {
     
-    @Published var users: User?
+    @Published var user: User?
     @Published private var _isLoading: Bool = false
 
     func getToken() -> String {
@@ -41,7 +41,7 @@ class Api : ObservableObject {
             case .success(let userData):
                 do {
                     let usersData = try! JSONDecoder().decode(User.self, from: userData)
-                    self.users = usersData
+                    self.user = usersData
                     
                     guard let jsonObject = try JSONSerialization.jsonObject(with: userData) as? [String: Any] else {
                         print("Error: Cannot convert data to JSON object")

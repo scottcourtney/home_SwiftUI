@@ -27,11 +27,11 @@ struct HouseView: View {
 }
 
 // MARK: - PREVIEW
-
-struct HouseView_Previews: PreviewProvider {
-    static var previews: some View {
-        HouseView(house: (users.document?.house![0])!, houseIndex: 0)
-            .previewLayout(.sizeThatFits)
-            .padding()
-    }
-}
+//
+//struct HouseView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HouseView(house: (users.document?.house![0])!, houseIndex: 0)
+//            .previewLayout(.sizeThatFits)
+//            .padding()
+//    }
+//}

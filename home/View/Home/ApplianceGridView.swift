@@ -12,6 +12,7 @@ struct ApplianceGridView: View {
     
     @Binding var houseIndex: Int
     @State private var showFormView: Bool = false
+    @State private var appliances: [Appliance] = []
 
 
     // MARK: - BODY
@@ -24,7 +25,7 @@ struct ApplianceGridView: View {
                     footer: SectionView(title: "Appliances", rotateClockwise: true)
                 )
                 {
-                    ForEach((users.document?.house?[self.houseIndex].interior?.appliances)!) { appliance in
+                    ForEach(appliances) { appliance in
                         ApplianceView(appliance: appliance)
                     }
                     Button(action: {
@@ -51,15 +52,22 @@ struct ApplianceGridView: View {
                                 .stroke(Color.gray, lineWidth: 1)
                         )
                     })//: BUTTON
-                    .sheet(isPresented: $showFormView) {
+                    .sheet(isPresented: $showFormView, onDismiss: {
+                       readFile()
+                    }, content: {
                         ApplianceFormView(houseIndex: $houseIndex)
-                    }
+                    })
                 }
             })//: GRID
             .frame(height: 140)
-//            .padding(.horizontal, 15)
             .padding(.vertical, 10)
-        })
+        }).onAppear(perform: readFile)
+    }
+    
+    func readFile() {
+        if let jsonData: User = Bundle.main.decode("data.json") {
+            self.appliances = (jsonData.document?.house![self.houseIndex].interior?.appliances)!
+        }
     }
 }
 

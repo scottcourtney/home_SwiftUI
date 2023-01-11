@@ -56,7 +56,7 @@ struct ApplianceFormView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing){
                     Button("Save", action: {
-                        Api().addAppliance(
+                        ApiService().addAppliance(
                             userId: (users.document?.userInfo?.userID)!,
                             houseId: (users.document?.house?[self.houseIndex].id)!,
                             nickname: nickname,
@@ -65,7 +65,8 @@ struct ApplianceFormView: View {
                             website: website,
                             otherInformation: otherInformation) { (result) in
                                 if result == true {
-                                    Api().getUserData(userId: (users.document?.userInfo?.userID)!) { (result) in
+                                    ApiService().getUserData(userId: (users.document?.userInfo?.userID)!) { (result) in
+                                        ApplianceGridView(houseIndex: $houseIndex).readFile()
                                         print(result)
                                         withAnimation {
                                             dismiss()
