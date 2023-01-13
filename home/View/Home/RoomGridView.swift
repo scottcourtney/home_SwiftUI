@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CodeScanner
 
 struct RoomGridView: View {
     // MARK: - PROPERTIES
@@ -15,6 +14,7 @@ struct RoomGridView: View {
     
     @State private var position: Int = 0
     @State private var rooms: [Room] = []
+    @State private var showFormView: Bool = false
 
     // MARK: - BODY
     
@@ -29,7 +29,9 @@ struct RoomGridView: View {
                         ForEach(rooms) { room in
                             RoomView(room: room)
                         }
-                        Button(action: {}, label: {
+                        Button(action: {
+                            showFormView.toggle()
+                        }, label: {
                             HStack(alignment: .center, spacing: 6) {
                                 Image(systemName: "house.circle.fill")
                                     .renderingMode(.template)
@@ -51,12 +53,17 @@ struct RoomGridView: View {
                                     .stroke(Color.gray, lineWidth: 1)
                             )
                         })//: BUTTON
+                        .fullScreenCover(isPresented: $showFormView, onDismiss: {
+                            readFile()
+                        }, content: {
+                            RoomFormView(houseIndex: $houseIndex)
+                        })
                     }
                 })//: GRID
                 .frame(height: 140)
-                .padding(.horizontal, 15)
                 .padding(.vertical, 10)
                 .onChange(of: houseIndex) { value in
+                    readFile()
                     withAnimation {
                         proxy.scrollTo(0, anchor: .top)
                     }

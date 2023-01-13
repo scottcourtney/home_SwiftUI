@@ -11,9 +11,11 @@ import Foundation
 struct Interior: Codable {
     let rooms: [Room]?
     let appliances: [Appliance]?
+    let misc: Misc?
 
     enum CodingKeys: String, CodingKey {
         case rooms = "Rooms"
         case appliances = "Appliances"
+        case misc = "Misc"
     }
 }

@@ -40,6 +40,8 @@ struct ContentView: View {
                         RoomGridView(houseIndex: $houseIndex.houseIndex)
                         
                         ApplianceGridView(houseIndex: $houseIndex.houseIndex)
+                        
+                        MiscGridView(houseIndex: $houseIndex.houseIndex)
                             
 //                        FooterView()
                             .padding(.horizontal)

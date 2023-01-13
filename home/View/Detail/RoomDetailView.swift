@@ -135,9 +135,9 @@ struct RoomDetailView: View {
     }
 }
 
-struct RoomDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        RoomDetailView(room: (users.document?.house![0].interior?.rooms![0])!)
-            .previewLayout(.fixed(width: 375, height: 812))
-    }
-}
+//struct RoomDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RoomDetailView(room: (users.document?.house![0].interior?.rooms![0])!)
+//            .previewLayout(.fixed(width: 375, height: 812))
+//    }
+//}

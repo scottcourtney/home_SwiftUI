@@ -1,13 +1,13 @@
 //
-//  ApplianceFormView.swift
+//  RoomFormView.swift
 //  home
 //
-//  Created by Scott Courtney on 1/2/23.
+//  Created by Scott Courtney on 1/12/23.
 //
 
 import SwiftUI
 
-struct ApplianceFormView: View {
+struct RoomFormView: View {
 //    let userDefaults = UserDefaults.standard
     let userId = UserDefaults.standard.string(forKey: "UserId")
 
@@ -25,7 +25,7 @@ struct ApplianceFormView: View {
         NavigationView() {
             VStack {
                 Form {
-                    Section(header: Text("Appliance")) {
+                    Section(header: Text("Wall")) {
                         Label {
                             TextField("Name",
                                       text: $nickname
@@ -51,7 +51,61 @@ struct ApplianceFormView: View {
                                       text: $otherInformation
                             )
                         } icon: {}
-                    }
+                    }//: SECTION
+                    Section(header: Text("Ceiling")) {
+                        Label {
+                            TextField("Name",
+                                      text: $nickname
+                            )
+                        } icon: {}
+                        Label {
+                            TextField("Brand",
+                                      text: $brand
+                            )
+                        } icon: {}
+                        Label {
+                            TextField("Model",
+                                      text: $model
+                            )
+                        } icon: {}
+                        Label {
+                                TextField("Website",
+                                          text: $website
+                                )
+                        } icon: {}
+                        Label {
+                            TextField("Other Information",
+                                      text: $otherInformation
+                            )
+                        } icon: {}
+                    }//: SECTION
+                    Section(header: Text("Flooring")) {
+                        Label {
+                            TextField("Name",
+                                      text: $nickname
+                            )
+                        } icon: {}
+                        Label {
+                            TextField("Brand",
+                                      text: $brand
+                            )
+                        } icon: {}
+                        Label {
+                            TextField("Model",
+                                      text: $model
+                            )
+                        } icon: {}
+                        Label {
+                                TextField("Website",
+                                          text: $website
+                                )
+                        } icon: {}
+                        Label {
+                            TextField("Other Information",
+                                      text: $otherInformation
+                            )
+                        } icon: {}
+                    }//: SECTION
                 }//: FORM
             }//: VSTACK
             .toolbar {
@@ -101,12 +155,13 @@ struct ApplianceFormView: View {
         }
     }
 }
-//
+
 //#if canImport(UIKit)
 //extension View {
 //    func hideKeyboard() {
 //        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil,
-//            from: nil, for: nil)
+//                                        from: nil, for: nil)
 //    }
 //}
 //#endif
+

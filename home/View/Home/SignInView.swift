@@ -76,6 +76,9 @@ struct SignInView: View {
                 
                 let userInfo = Auth.auth().currentUser
                 self.userId = userInfo!.uid
+                let defaults = UserDefaults.standard
+                defaults.set(userInfo?.uid, forKey: "UserId")
+                defaults.set(userInfo?.email, forKey: "UserEmail")
                 
                 userInfo?.getIDToken(completion: { (token,err) in
                     if err != nil {
@@ -97,9 +100,6 @@ struct SignInView: View {
                         
                     }
                 })
-                let defaults = UserDefaults.standard
-                defaults.set(userInfo?.uid, forKey: "UserId")
-                defaults.set(userInfo?.email, forKey: "UserEmail")
                 
                 print("User signed in")
                 print("User ID = \(String(describing: userInfo?.uid))")

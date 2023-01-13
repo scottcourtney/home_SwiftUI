@@ -40,6 +40,19 @@ struct RoomView: View {
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(Color.gray, lineWidth: 1)
             )
+            .contextMenu {
+                Button(role: .destructive) {
+                    print("Delete Room Pressed")
+                } label: {
+                    Label("Remove Room", systemImage: "minus.circle")
+                        .foregroundColor(.red)
+                }
+                Button(role: .cancel) {
+                    print("Cancel")
+                } label: {
+                    Label("Cancel", systemImage: "")
+                }
+            }
         })//: BUTTON
         .sheet(isPresented: $isModal, content: {
             RoomDetailView(room: room)
@@ -48,11 +61,11 @@ struct RoomView: View {
 }
 
 // MARK: - PREVIEW
-
-struct RoomView_Previews: PreviewProvider {
-    static var previews: some View {
-        RoomView(room: (users.document?.house![0].interior?.rooms![0])!)
-            .previewLayout(.sizeThatFits)
-            .padding()
-    }
-}
+//
+//struct RoomView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RoomView(room: (users.document?.house![0].interior?.rooms![0])!)
+//            .previewLayout(.sizeThatFits)
+//            .padding()
+//    }
+//}

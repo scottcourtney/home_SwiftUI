@@ -12,24 +12,6 @@ struct User: Codable {
     let document: Document?
 }
 
-// MARK: - UserInfo
-struct UserInfo: Codable {
-    
-    var userID, email, uid, displayName: String?
-    var firstName, lastName: String?
-    
-    init(uid: String, displayName: String?) {
-            self.uid = uid
-//            self.email = email
-            self.displayName = displayName
-        }
-
-    enum CodingKeys: String, CodingKey {
-        case userID = "user_id"
-        case email, uid, displayName, firstName, lastName
-    }
-}
-
 // MARK: - Document
 struct Document: Codable, Identifiable {
     let id: String?
@@ -41,4 +23,23 @@ struct Document: Codable, Identifiable {
            case userInfo, house
        }
 }
+
+// MARK: - UserInfo
+struct UserInfo: Codable {
+    
+    var userID, email, uid, displayName: String?
+    var firstName, lastName: String?
+    
+//    init(uid: String, displayName: String?) {
+//            self.uid = uid
+////            self.email = email
+//            self.displayName = displayName
+//        }
+
+    enum CodingKeys: String, CodingKey {
+        case userID = "user_id"
+        case email, uid, displayName, firstName, lastName
+    }
+}
+
 

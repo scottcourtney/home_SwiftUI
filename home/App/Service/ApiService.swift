@@ -13,13 +13,14 @@ class ApiService : ObservableObject {
     
     @Published var user: User?
     @Published private var _isLoading: Bool = false
-
+    
     func getToken() -> String {
         let data = KeychainService.standard.read(service: "access-token", account: "firebase")!
         let jwtTokenString = String(data: data, encoding: .utf8)!
         return jwtTokenString
     }
     
+    // READ DATA
     func getUserData(userId: String, completion: @escaping (User) -> ()) {
         let jwtTokenString = getToken()
         let params: Parameters = [
@@ -30,7 +31,7 @@ class ApiService : ObservableObject {
                 "userInfo.user_id": userId
             ]
         ]
- 
+        
         let headers: HTTPHeaders = [
             "Content-Type": "application/json",
             "jwtTokenString": jwtTokenString
@@ -58,13 +59,13 @@ class ApiService : ObservableObject {
                     
                     let file = "data.json"
                     if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-                    let fileURL = dir.appendingPathComponent(file)
-                    do {
-                        try prettyPrintedJson.write(to: fileURL, atomically: false, encoding: .utf8)
+                        let fileURL = dir.appendingPathComponent(file)
+                        do {
+                            try prettyPrintedJson.write(to: fileURL, atomically: false, encoding: .utf8)
+                        }
+                        catch {}
                     }
-                    catch {}
-                    }
-                                    
+                    
                     DispatchQueue.main.async {
                         completion(usersData)
                     }
@@ -79,23 +80,27 @@ class ApiService : ObservableObject {
         }.resume()
     }
     
-    // TODO:
     // ADD ROOM
-    
-    func addRoom() {
-        let jwtTokenString = getToken()
-        let params: Parameters = [
-            "collection": COLLECTION,
-            "database": DATABASE,
-            "dataSource": DATASOURCE,
-            "filter": [
-                "user_id": "CH0FuxM5sBMOtRhlGbXCa6dTPZz1",
-                "house.house_id": ["$oid":"63925daed836609d85d5da65"]
-            ],
-            "update": [
+    func addRoom(
+        userId: String,
+        houseId: String,
+        nickname: String,
+        completion: @escaping (Bool) -> ()) {
+            let jwtTokenString = getToken()
+            
+            let params: Parameters = [
+                "collection": COLLECTION,
+                "database": DATABASE,
+                "dataSource": DATASOURCE,
+                "filter": [
+                    "userInfo.user_id": userId,
+                    "house.house_id": ["$oid": houseId]
+                ],
+                
+                "update": [
                     "$push": [ "house.$.interior.Rooms":
                                 [
-                                    "room_id": ["$oid":"73925daed836609d85d5da22"],
+                                    "room_id": UUID().uuidString,
                                     "roomType": "bedroom",
                                     "nickname": "Test2 Room",
                                     "Ceiling": [
@@ -114,25 +119,69 @@ class ApiService : ObservableObject {
                                         "paintFinish": "Satin"
                                     ]
                                 ]
-                                ]
-                    ]
-        ]
-        
-        let headers: HTTPHeaders = [
-            "Content-Type": "application/json",
-            "jwtTokenString": jwtTokenString
-        ]
-         
-        AF.request(API_URL + "/updateOne", method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
-            .responseJSON { response in
-                print(response)
-    
-            }
-    }
+                             ]
+                ]
+            ]
+            
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json",
+                "jwtTokenString": jwtTokenString
+            ]
+            
+            AF.request(API_URL + "/updateOne", method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
+                .responseJSON { response in
+                    print(response)
+                    DispatchQueue.main.async {
+                        completion(true)
+                    }
+                }
+        }
     
     // ADD HOUSE
-    // ADD APPLIANCE
+    func addHouse(
+        userId: String,
+        nickname: String,
+        completion: @escaping (Bool) -> ()) {
+            let jwtTokenString = getToken()
+            
+            let params: Parameters = [
+                "collection": COLLECTION,
+                "database": DATABASE,
+                "dataSource": DATASOURCE,
+                "filter": [
+                    "userInfo.user_id": userId,
+                ],
+                
+                "update": [
+                    "$push": [ "house":
+                                [
+                                    "house_id": UUID().uuidString,
+                                    "nickname": nickname,
+                                    "interior": [
+                                        "Rooms":[],
+                                        "Appliances": []
+                                    ],
+                                    "exterior": []
+                                ]
+                             ]
+                ]
+            ]
+            
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json",
+                "jwtTokenString": jwtTokenString
+            ]
+            
+            AF.request(API_URL + "/updateOne", method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
+                .responseJSON { response in
+                    print(response)
+                    DispatchQueue.main.async {
+                        completion(true)
+                    }
+                }
+        }
     
+    // ADD APPLIANCE
     func addAppliance(
         userId: String,
         houseId: String,
@@ -143,7 +192,7 @@ class ApiService : ObservableObject {
         otherInformation: String,
         completion: @escaping (Bool) -> ()) {
             let jwtTokenString = getToken()
-
+            
             let params: Parameters = [
                 "collection": COLLECTION,
                 "database": DATABASE,
@@ -180,10 +229,65 @@ class ApiService : ObservableObject {
                 }
         }
     
-    // READ DATA
+    // CREATE BLANK DOC
+    func createUser(
+        userId: String,
+        nickname: String,
+        email: String,
+        firstName: String,
+        lastName: String,
+        completion: @escaping (Bool) -> ()) {
+            let jwtTokenString = getToken()
+
+            let params: Parameters = [
+                "collection": COLLECTION,
+                "database": DATABASE,
+                "dataSource": DATASOURCE,
+                
+                "document": [
+                    "userInfo": [
+                        "user_id": userId,
+                        "email": email,
+                        "firstName": firstName,
+                        "lastName": lastName
+                    ],
+                    "house": [
+                        [
+                        "house_id": UUID().uuidString,
+                        "nickname": nickname,
+                        "interior": [
+                            "Rooms":[],
+                            "Appliances": [],
+                            "Misc": [
+                                "lightbulbs": [],
+                                "filters": []
+                            ]
+                        ],
+                        "exterior": [
+                            "test": "test"
+                        ]
+                    ]
+                    ]
+                ]
+            ]
+            
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json",
+                "jwtTokenString": jwtTokenString
+            ]
+            
+            AF.request(API_URL + "/insertOne", method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
+                .responseJSON { response in
+                    print(response)
+                    DispatchQueue.main.async {
+                        completion(true)
+                    }
+                }
+        }
+    
+    
     // DELETE DATA
     // UPDATE DATA
-    // CREATE BLANK DOC
     // DELETE ROOM
     // DELETE HOUSE
 }

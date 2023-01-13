@@ -9,7 +9,7 @@ import SwiftUI
 import Firebase
 
 struct SignUpView: View {
-
+    
     @EnvironmentObject var viewRouter: ViewRouter
     
     @State var email = ""
@@ -18,6 +18,8 @@ struct SignUpView: View {
     
     @State var signUpProcessing = false
     @State var signUpErrorMessage = ""
+    @State var token = ""
+    @State var userId = ""
     
     var body: some View {
         VStack(spacing: 15) {
@@ -33,7 +35,7 @@ struct SignUpView: View {
                     .background(.thinMaterial)
                     .cornerRadius(10)
             }
-                .disabled(!signUpProcessing && !email.isEmpty && !password.isEmpty && !passwordConfirmation.isEmpty && password == passwordConfirmation ? false : true)
+            .disabled(!signUpProcessing && !email.isEmpty && !password.isEmpty && !passwordConfirmation.isEmpty && password == passwordConfirmation ? false : true)
             if signUpProcessing {
                 ProgressView()
             }
@@ -50,9 +52,9 @@ struct SignUpView: View {
                     Text("Log In")
                 }
             }
-                .opacity(0.9)
+            .opacity(0.9)
         }
-            .padding()
+        .padding()
     }
     
     func signUpUser(userEmail: String, userPassword: String) {
@@ -72,23 +74,42 @@ struct SignUpView: View {
                 signUpProcessing = false
             case .some(_):
                 let userInfo = Auth.auth().currentUser
-                userInfo?.getIDToken(completion: { (token,err) in
-                    if err != nil {
-                        print("Token error: \(err)")
-                    } else {
-                        print("Token:  \(token)")
-                    }
-                })
+                self.userId = userInfo!.uid
+                
                 let defaults = UserDefaults.standard
                 defaults.set(userInfo?.uid, forKey: "UserId")
                 defaults.set(userInfo?.email, forKey: "UserEmail")
                 
+                userInfo?.getIDToken(completion: { (token,err) in
+                    if err != nil {
+                        print("Token error: \(String(describing: err))")
+                    } else {
+                        print("Token:  \(String(describing: token))")
+                        if let token = token {
+                            let accessToken = token
+                            let data = Data(accessToken.utf8)
+                            KeychainService.standard.save(data, service: "access-token", account: "firebase")
+                            ApiService().createUser(userId: userId, nickname: "1223 old road", email: userEmail, firstName: "FirstName", lastName: "LastName") { (result) in
+                                if result == true {
+                                    ApiService().getUserData(userId: userId) { (result) in
+                                        print(result)
+                                        withAnimation {
+                                            viewRouter.currentPage = .contentPage
+                                        }
+                                    }
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                })
+                
                 print("User signed up")
                 print("User ID = \(userInfo?.uid)")
                 signUpProcessing = false
-                withAnimation {
-                    viewRouter.currentPage = .contentPage
-                }
+                
             }
         }
         

@@ -9,7 +9,7 @@ import SwiftUI
 
 // DATA
 
-let users: User = Bundle.main.decode("data.json")
+//let users: User = Bundle.main.decode("data.json")
 //let users: User = Bundle.main.decodeFile("data.json")
 
 

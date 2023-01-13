@@ -23,12 +23,16 @@ struct HouseTabView: View {
     // MARK: - BODY
     var body: some View {
         TabView(selection: $selectedItem) {
-            ForEach((houses.indices), id: \.self) { index in
-                HouseView(house: (houses[index]), houseIndex: index)
-                    .padding(.top, 10)
-                    .padding(.horizontal, 15)
-                    .padding(.bottom, 40)
-                    .tag(index)
+            if houses.count > 0 {
+                ForEach((houses.indices), id: \.self) { index in
+                    HouseView(house: (houses[index]), houseIndex: index)
+                        .padding(.top, 10)
+                        .padding(.horizontal, 15)
+                        .padding(.bottom, 40)
+                        .tag(index)
+                }
+            } else {
+                ProgressView()
             }
         }//: TAB
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))

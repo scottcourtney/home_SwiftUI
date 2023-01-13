@@ -23,6 +23,25 @@ struct HouseView: View {
                 .cornerRadius(12)
             Text(house.nickname!)
         }
+        .contextMenu {
+            Button {
+                print("Transfer House Pressed")
+            } label: {
+                Label("Transfer House To New Owner", systemImage: "shared.with.you")
+                    .foregroundColor(Color.red)
+            }
+            Button(role: .destructive) {
+                print("Delete House Pressed")
+            } label: {
+                Label("Remove House", systemImage: "minus.circle")
+                    .foregroundColor(Color.red)
+            }
+            Button(role: .cancel) {
+                print("Cancel")
+            } label: {
+                Label("Cancel", systemImage: "")
+            }
+        }
     }
 }
 

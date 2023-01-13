@@ -19,7 +19,7 @@ struct homeApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MotherView().environmentObject(ViewRouter())
+            MotherView().environmentObject(viewRouter)
         }
     }
 }

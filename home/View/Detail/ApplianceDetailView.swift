@@ -65,8 +65,8 @@ struct ApplianceDetailView: View {
     }
 }
 
-struct ApplianceDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        ApplianceDetailView(appliance: (users.document?.house![0].interior?.appliances![0])!)
-    }
-}
+//struct ApplianceDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ApplianceDetailView(appliance: (users.document?.house![0].interior?.appliances![0])!)
+//    }
+//}
