@@ -80,7 +80,7 @@ struct MiscGridView: View {
         }
         .onAppear(perform: readFile)
     }
-    //
+
             func readFile() {
                 if let jsonData: User = Bundle.main.decode("data.json") {
                     self.filters = (jsonData.document?.house![self.houseIndex].interior?.misc?.filters)!
