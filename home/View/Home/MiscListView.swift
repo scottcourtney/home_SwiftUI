@@ -11,6 +11,7 @@ struct MiscGridView: View {
     // MARK: - PROPERTIES
     
     @Binding var houseIndex: Int
+    @State private var houseNickname: String = ""
     @State private var filters: [Filter] = []
     @State private var lightbulbs: [Lightbulb] = []
     @State private var showLightbulbListView: Bool = false
@@ -83,8 +84,12 @@ struct MiscGridView: View {
 
             func readFile() {
                 if let jsonData: User = Bundle.main.decode("data.json") {
-                    self.filters = (jsonData.document?.house![self.houseIndex].interior?.misc?.filters)!
-                    self.lightbulbs = (jsonData.document?.house![self.houseIndex].interior?.misc?.lightbulbs)!
+                    guard let misc = jsonData.document?.house?[self.houseIndex].interior?.misc else { self.filters.removeAll()
+                        self.lightbulbs.removeAll()
+                        return
+                    }
+                    self.filters = misc.filters!
+                    self.lightbulbs = misc.lightbulbs!
 
                 }
             }

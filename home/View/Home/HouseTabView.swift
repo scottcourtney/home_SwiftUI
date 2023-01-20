@@ -43,7 +43,11 @@ struct HouseTabView: View {
     
     private func readFile() {
         if let jsonData: User = Bundle.main.decode("data.json") {
-            self.houses = (jsonData.document?.house!)!
+            guard let houses = jsonData.document?.house else {
+                self.houses.removeAll()
+                return
+            }
+            self.houses = houses
         }
     }
 }

@@ -78,7 +78,11 @@ struct ApplianceGridView: View {
     
     func readFile() {
         if let jsonData: User = Bundle.main.decode("data.json") {
-            self.appliances = (jsonData.document?.house![self.houseIndex].interior?.appliances)!
+            guard let appliances = jsonData.document?.house?[self.houseIndex].interior?.appliances else {
+                self.appliances.removeAll()
+                return
+            }
+            self.appliances = appliances
         }
     }
 }

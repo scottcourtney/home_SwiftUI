@@ -48,7 +48,25 @@ struct LightbulbDetailView: View {
                             }//: FORM
                         }
                     }//: VSTACK
-
+                    .toolbar {
+                        
+                        ToolbarItemGroup(placement: .navigationBarTrailing){
+                            Button("Save", action: {
+                                print("Edit Button Tapped")
+                            })//: BUTTON
+                        }
+                        ToolbarItemGroup(placement: .navigationBarLeading){
+                            Button("Cancel", action: {
+                                withAnimation {
+                                    dismiss()
+                                }
+                                
+                                print("Cancel Button Tapped")
+                            })//: BUTTON
+                            
+                        }
+                    }
+                    .navigationBarTitleDisplayMode(.inline)
                     .navigationTitle("Lightbulbs")
 
                 }//: NAVIGATIONVIEW

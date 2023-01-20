@@ -74,7 +74,11 @@ struct RoomGridView: View {
     
     func readFile() {
         if let jsonData: User = Bundle.main.decode("data.json") {
-            self.rooms = (jsonData.document?.house![self.houseIndex].interior?.rooms)!
+            guard let rooms = jsonData.document?.house?[self.houseIndex].interior?.rooms else {
+                self.rooms.removeAll()
+                return
+            }
+            self.rooms = rooms
         }
     }
 }

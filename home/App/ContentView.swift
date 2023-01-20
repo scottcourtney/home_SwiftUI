@@ -53,11 +53,3 @@ struct ContentView: View {
         .ignoresSafeArea(.all, edges: .top)
     }
 }
-
-// MARK: - PREVIEW
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//            .environmentObject(HouseIndex())
-//    }
-//}
