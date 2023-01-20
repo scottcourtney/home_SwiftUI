@@ -41,10 +41,10 @@ class NotificationService: ObservableObject {
         dateComponents.hour = 17
         
         // Create the trigger.
-//        trigger = UNCalendarNotificationTrigger(
-//                 dateMatching: dateComponents, repeats: false)
+        trigger = UNCalendarNotificationTrigger(
+                 dateMatching: dateComponents, repeats: false)
         
-        trigger = UNTimeIntervalNotificationTrigger(timeInterval: 61, repeats: true)
+//        trigger = UNTimeIntervalNotificationTrigger(timeInterval: 61, repeats: true)
         
         // Create the content.
         let content = UNMutableNotificationContent()

@@ -108,7 +108,6 @@ struct FilterDetailView: View {
                 notification.setupNotificationAuth()
             }
             .toolbar {
-                
                 ToolbarItemGroup(placement: .navigationBarTrailing){
                     Button("Save", action: {
                         print("Edit Button Tapped")
