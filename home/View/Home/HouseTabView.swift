@@ -27,7 +27,6 @@ struct HouseTabView: View {
                 ForEach((houses.indices), id: \.self) { index in
                     HouseView(house: (houses[index]), houseIndex: index)
                         .padding(.top, 10)
-//                        .padding(.horizontal, 15)
                         .padding(.bottom, 40)
                         .tag(index)
                 }

@@ -33,14 +33,3 @@ struct SectionView: View {
             .frame(width: 85)
     }
 }
-
-// MARK: - PREVIEW
-
-struct SectionView_Previews: PreviewProvider {
-    static var previews: some View {
-        SectionView(title: "Appliances", rotateClockwise: true)
-            .previewLayout(.fixed(width: 120, height: 240))
-            .padding()
-            .background(.white)
-    }
-}

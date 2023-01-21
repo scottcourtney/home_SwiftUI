@@ -19,8 +19,8 @@ struct LightbulbDetailView: View {
             var body: some View {
                 NavigationView() {
                     VStack {
+                        Form {
                         ForEach(lightbulbs) { lightbulb in
-                            Form {
                                 Section(header: Text(lightbulb.nickname ?? "N/A")) {
                                     Label {
                                         Text("Brand")
@@ -45,8 +45,15 @@ struct LightbulbDetailView: View {
                                         Text(lightbulb.watts ?? "N/A")
                                     } icon: {}
                                 }//: SECTION
-                            }//: FORM
-                        }
+                            }
+                            Button(action: {}) {
+                                HStack {
+                                    Spacer()
+                                    Text("Add Lightbulb")
+                                    Spacer()
+                                }
+                            }
+                        }//: FORM
                     }//: VSTACK
                     .toolbar {
                         

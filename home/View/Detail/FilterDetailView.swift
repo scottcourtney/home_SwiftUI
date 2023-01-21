@@ -16,7 +16,6 @@ struct FilterDetailView: View {
     @State private var date = Date()
     @State private var futureDate = Date()
     @State private var replaceNotification = false
-    @State private var uuidString = ""
 
     @State var filters: [Filter]
     
@@ -91,18 +90,26 @@ struct FilterDetailView: View {
                                 print(filters[index].filterNotification)
                                 if filters[index].filterNotification == true {
                                     futureDateConversion(replacedDate: dateFormatter.date(from: filters[index].replacedDate!)!)
-                                    uuidString = notification.scheduleNotification(date: futureDate,
+                                    notification.scheduleNotification(date: futureDate,
                                                                       title: "Replace Filter",
-                                                                      body: "\(filters[index].nickname!) Filter needs to be replaced.")
+                                                                      body: "\(filters[index].nickname!) Filter needs to be replaced.",
+                                                                      uuid: filters[index].id)
                                     print("Replace \(filters[index].nickname!) Filter on \(dateFormatter.string(from: futureDate))")
                                 } else {
-                                    notification.cancelNotification(uuidString: uuidString)
+                                    notification.cancelNotification(uuid: filters[index].id)
                                     print("Cancelled Notification")
                                 }
                             }
                         }//: SECTION
-                    }//: FORM
-                }
+                    }
+                    Button(action: {}) {
+                        HStack {
+                            Spacer()
+                            Text("Add Lightbulb")
+                            Spacer()
+                        }
+                    }
+                }//: FORM
             }//: VSTACK
             .onAppear {
                 notification.setupNotificationAuth()

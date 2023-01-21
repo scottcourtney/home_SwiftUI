@@ -15,6 +15,7 @@ struct RoomGridView: View {
     @State private var position: Int = 0
     @State private var rooms: [Room] = []
     @State private var showFormView: Bool = false
+    @State private var hideSection: Bool = false
 
     // MARK: - BODY
     
@@ -23,9 +24,9 @@ struct RoomGridView: View {
             ScrollViewReader { proxy in
                 LazyHGrid(rows: gridLayout, alignment: .center, spacing: columnSpacing, pinnedViews: [], content: {
                     Section(
-                        header: SectionView(title: "Rooms", rotateClockwise: false),
-                        footer: SectionView(title: "Rooms", rotateClockwise: true)
-                    ) {
+                        header: SectionView(title: "Rooms", rotateClockwise: false).opacity(hideSection ? 0 : 1),
+                        footer: SectionView(title: "Rooms", rotateClockwise: true).opacity(hideSection ? 0 : 1)
+                    ){
                         ForEach(rooms) { room in
                             RoomView(room: room)
                         }
@@ -77,6 +78,9 @@ struct RoomGridView: View {
             guard let rooms = jsonData.document?.house?[self.houseIndex].interior?.rooms else {
                 self.rooms.removeAll()
                 return
+            }
+            if rooms.count > 0 {
+                hideSection = false
             }
             self.rooms = rooms
         }
