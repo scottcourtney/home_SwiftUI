@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Appliance
-struct Appliance: Codable, Identifiable {
+struct Appliance: Codable, Identifiable, Hashable {
     let id: UUID
     let nickname, brand, model, website, other: String?
 

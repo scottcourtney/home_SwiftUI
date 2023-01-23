@@ -23,5 +23,8 @@ struct Lightbulb: Codable, Identifiable {
 struct Filter: Codable, Identifiable {
     let id: UUID
     var filtersLeft: Int?
-    let nickname, size, replacedDate: String?
+    var nickname, size: String?
+    var replacedDate: String?
+    var filterNotification: Bool
+    let filterReplacementDate: String?
 }

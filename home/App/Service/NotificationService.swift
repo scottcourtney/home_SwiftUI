@@ -32,7 +32,7 @@ class NotificationService: ObservableObject {
         }
     }
     
-    func scheduleNotification(date: Date, title: String, body: String) -> String {
+    func scheduleNotification(date: Date, title: String, body: String, uuid: UUID) {
         var trigger: UNNotificationTrigger?
         
         // Configure the time.
@@ -41,10 +41,10 @@ class NotificationService: ObservableObject {
         dateComponents.hour = 17
         
         // Create the trigger.
-        trigger = UNCalendarNotificationTrigger(
-                 dateMatching: dateComponents, repeats: false)
+//        trigger = UNCalendarNotificationTrigger(
+//                 dateMatching: dateComponents, repeats: false)
         
-//        trigger = UNTimeIntervalNotificationTrigger(timeInterval: 61, repeats: true)
+        trigger = UNTimeIntervalNotificationTrigger(timeInterval: 61, repeats: true)
         
         // Create the content.
         let content = UNMutableNotificationContent()
@@ -53,7 +53,7 @@ class NotificationService: ObservableObject {
         content.sound = UNNotificationSound.default
         
         // Create the request
-        let uuidString = UUID().uuidString
+        let uuidString = uuid.uuidString
         let request = UNNotificationRequest(identifier: uuidString,
                     content: content, trigger: trigger)
 
@@ -65,10 +65,10 @@ class NotificationService: ObservableObject {
                print("error.localizedDescription")
            }
         }
-        return uuidString
     }
     
-    func cancelNotification(uuidString: String) {
+    func cancelNotification(uuid: UUID) {
+        let uuidString = uuid.uuidString
         let center = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: [uuidString])
     }
