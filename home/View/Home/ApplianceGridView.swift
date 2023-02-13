@@ -11,26 +11,30 @@ struct ApplianceGridView: View {
     // MARK: - PROPERTIES
     
     @Binding var houseIndex: Int
+    
+    @State private var position: [UUID] = []
     @State private var houses: [House] = []
     @State private var showFormView: Bool = false
     @State private var appliances: [Appliance] = []
     @State private var didLongPress = false
     @State private var stored: Int = 0
-
-
+    
+    
     // MARK: - BODY
     
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false, content: {
-            ScrollViewReader { proxy in
-                LazyHGrid(rows: gridLayout, alignment: .center, spacing: columnSpacing, pinnedViews: [], content: {
-                    Section(
-                        header: SectionView(title: "Appliances", rotateClockwise: false),
-                        footer: SectionView(title: "Appliances", rotateClockwise: true)
-                    )
-                    {
+        VStack {
+            HStack {
+                Text("Appliances")
+                    .padding(.leading, 10)
+                Spacer()
+            }
+            ScrollViewReader { scrollView in
+                ScrollView(.horizontal, showsIndicators: false, content: {
+                    HStack {
                         ForEach(appliances) { appliance in
                             ApplianceView(appliance: appliance)
+                                .id(appliance.id)
                         }
                         Button(action: {
                             showFormView.toggle()
@@ -61,19 +65,23 @@ struct ApplianceGridView: View {
                         }, content: {
                             ApplianceFormView(houseIndex: $houseIndex)
                         })
-                    }
-                })//: GRID
-                
-                .frame(height: 140)
-                .padding(.vertical, 10)
-                .onChange(of: houseIndex) { value in
-                    readFile()
-                    withAnimation {
-                        proxy.scrollTo(0, anchor: .top)
-                    }
-                }
+                        
+                        //                    .frame(height: 140)
+                        //                    .padding(.vertical, 10)
+                        .onChange(of: houseIndex) { value in
+                            readFile()
+                            withAnimation {
+                                scrollView.scrollTo(position.first)
+                            }
+                        }
+                    }.padding(.leading, 10)
+                    
+                }).onAppear(perform: readFile)
+//                    .padding(.leading, 10)
             }
-        }).onAppear(perform: readFile)
+        }
+        .padding(.bottom, 10)
+        
     }
     
     func readFile() {
@@ -83,6 +91,16 @@ struct ApplianceGridView: View {
                 return
             }
             self.appliances = appliances
+            getPosition(appliances: appliances)
+            
+        }
+    }
+    
+    func getPosition(appliances: [Appliance]) {
+        if position.isEmpty {
+            for appliance in appliances {
+                position.append(appliance.id)
+            }
         }
     }
 }

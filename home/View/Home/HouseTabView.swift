@@ -26,8 +26,10 @@ struct HouseTabView: View {
             if houses.count > 0 {
                 ForEach((houses.indices), id: \.self) { index in
                     HouseView(house: (houses[index]), houseIndex: index)
-                        .padding(.top, 10)
-                        .padding(.bottom, 40)
+                        .padding(.top, 20)
+                        .padding(.bottom, 20)
+//                        .ignoresSafeArea(edges: .top)
+
                         .tag(index)
                 }
             } else {
@@ -35,6 +37,7 @@ struct HouseTabView: View {
             }
         }//: TAB
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+        .ignoresSafeArea(edges: .top)
         .onChange(of: selectedItem) { value in
             self.houseIndex = value
         }.onAppear(perform: readFile)

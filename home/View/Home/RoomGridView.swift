@@ -12,23 +12,26 @@ struct RoomGridView: View {
     
     @Binding var houseIndex: Int
     
-    @State private var position: Int = 0
+    @State private var position: [String] = []
     @State private var rooms: [Room] = []
     @State private var showFormView: Bool = false
-    @State private var hideSection: Bool = false
 
     // MARK: - BODY
     
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false, content: {
-            ScrollViewReader { proxy in
-                LazyHGrid(rows: gridLayout, alignment: .center, spacing: columnSpacing, pinnedViews: [], content: {
-                    Section(
-                        header: SectionView(title: "Rooms", rotateClockwise: false).opacity(hideSection ? 0 : 1),
-                        footer: SectionView(title: "Rooms", rotateClockwise: true).opacity(hideSection ? 0 : 1)
-                    ){
+        VStack {
+            HStack {
+                Text("Rooms")
+                    .padding(.leading, 10)
+                Spacer()
+            }
+            ScrollViewReader { scrollView in
+                ScrollView(.horizontal, showsIndicators: false, content: {
+                    //            ScrollViewReader { proxy in
+                    HStack {
                         ForEach(rooms) { room in
                             RoomView(room: room)
+                                .id(room.id)
                         }
                         Button(action: {
                             showFormView.toggle()
@@ -59,30 +62,40 @@ struct RoomGridView: View {
                         }, content: {
                             RoomFormView(houseIndex: $houseIndex)
                         })
+                        
+                        //                    .frame(height: 140)
+                        //                    .padding(.vertical, 10)
+                        .onChange(of: houseIndex, perform: { value in
+                            readFile()
+                            withAnimation {
+                                scrollView.scrollTo(position.first)
+                            }
+                        })
                     }
-                })//: GRID
-                .frame(height: 140)
-                .padding(.vertical, 10)
-                .onChange(of: houseIndex) { value in
-                    readFile()
-                    withAnimation {
-                        proxy.scrollTo(0, anchor: .top)
-                    }
-                }
+                    //            }
+                }).onAppear(perform: readFile)
+                    .padding(.leading, 10)
             }
-        }).onAppear(perform: readFile)
     }
+        .padding(.bottom, 10)
+
+    }
+        func readFile() {
+            if let jsonData: User = Bundle.main.decode("data.json") {
+                guard let rooms = jsonData.document?.house?[self.houseIndex].interior?.rooms else {
+                    self.rooms.removeAll()
+                    return
+                }
+                self.rooms = rooms
+                getPosition(rooms: rooms)
+            }
+        }
     
-    func readFile() {
-        if let jsonData: User = Bundle.main.decode("data.json") {
-            guard let rooms = jsonData.document?.house?[self.houseIndex].interior?.rooms else {
-                self.rooms.removeAll()
-                return
+    func getPosition(rooms: [Room]) {
+        if position.isEmpty {
+            for room in rooms {
+                position.append(room.id!)
             }
-            if rooms.count > 0 {
-                hideSection = false
-            }
-            self.rooms = rooms
         }
     }
 }

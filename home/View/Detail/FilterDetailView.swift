@@ -102,13 +102,6 @@ struct FilterDetailView: View {
                             }
                         }//: SECTION
                     }
-                    Button(action: {}) {
-                        HStack {
-                            Spacer()
-                            Text("Add Lightbulb")
-                            Spacer()
-                        }
-                    }
                 }//: FORM
             }//: VSTACK
             .onAppear {
@@ -121,12 +114,14 @@ struct FilterDetailView: View {
                     })//: BUTTON
                 }
                 ToolbarItemGroup(placement: .navigationBarLeading){
-                    Button("Cancel", action: {
+                    Button(action: {
                         withAnimation {
-                            dismiss()
+//                            addNewForm()
                         }
-                        
-                        print("Cancel Button Tapped")
+                        print("Plus Button Tapped")
+
+                    }, label: {
+                        Image(systemName: "plus")
                     })//: BUTTON
                     
                 }
@@ -159,4 +154,18 @@ struct FilterDetailView: View {
         
         futureDate = Calendar.current.date(byAdding: dateComponent, to: replacedDate)!
     }
+    
+//    func addNewForm() {
+//        let name = ""
+//        let email = ""
+//        let address = ""
+//        let newSection = Section(header: Text("Customer Information")) {
+//            TextField("Customer Name", text: $name)
+//            TextField("Email", text: $email)
+//            TextField("Address", text: $address)
+//        }
+//
+//        sections.append(newSection)
+//
+//    }
 }

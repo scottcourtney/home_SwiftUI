@@ -11,6 +11,8 @@ import SwiftUI
 
 class ApiService : ObservableObject {
     
+    let userId = UserDefaults.standard.string(forKey: "UserId")
+
     @Published var user: User?
     @Published private var _isLoading: Bool = false
     
@@ -285,8 +287,46 @@ class ApiService : ObservableObject {
                 }
         }
     
+    // REMOVE APPLIANCE
+    func removeAppliance(
+        houseId: String,
+        applianceID: UUID,
+        completion: @escaping (Bool) -> ()) {
+            let jwtTokenString = getToken()
+            
+            let params: Parameters = [
+                "collection": COLLECTION,
+                "database": DATABASE,
+                "dataSource": DATASOURCE,
+                "filter":
+                    [
+                        "user_id": userId,
+                        "house.house_id": ["$oid": houseId]
+                    ],
+                    "update": [
+                        "$pull": [ "house.$.interior.$[].Appliances":
+                        [
+                            "appliance_id": ["$oid": applianceID]
+                      
+                ]
+            ]
+                ]
+                ]
+            
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json",
+                "jwtTokenString": jwtTokenString
+            ]
+            
+            AF.request(API_URL + "/updateOne", method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
+                .responseJSON { response in
+                    print(response)
+                    DispatchQueue.main.async {
+                        completion(true)
+                    }
+                }
+        }
     
-    // DELETE DATA
     // UPDATE DATA
     // DELETE ROOM
     // DELETE HOUSE

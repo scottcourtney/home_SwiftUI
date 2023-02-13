@@ -24,9 +24,8 @@ struct ImageView: View {
         if let image = image
         {
             Image(uiImage: image)
-                .resizable()
-                .scaledToFit()
-                .cornerRadius(12)
+                .fitToAspectRatio(1.5)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
                 .overlay(
                     PhotosPicker(
                         selection: $selectedItem,
@@ -58,10 +57,9 @@ struct ImageView: View {
                 }
                
         } else {
-            Image("interior_img")
-                .resizable()
-                .scaledToFit()
-                .cornerRadius(12)
+            Image("house_img")
+                .fitToAspectRatio(1.5)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
                 .overlay(
                     PhotosPicker(
                         selection: $selectedItem,
@@ -99,3 +97,4 @@ struct ImageView: View {
             image = fileManager.loadImage(imageName: houseId!, folderName: folderName)
         }
     }
+}

@@ -12,13 +12,19 @@ struct FilterStepperView: View {
     @State var filterCount: Int
 
     var body: some View {
-        VStack(alignment: .trailing) {
-            Text(String(filterCount))
+        HStack {
                 
             Stepper("", onIncrement: {
                             filterCount += 1
                         }, onDecrement: {
-                            filterCount -= 1
-                        })        }
+                            if filterCount >= 1 {
+                                filterCount -= 1
+                            }
+                        })
+            
+            Text(String(filterCount))
+
+            
+        }
     }
 }
