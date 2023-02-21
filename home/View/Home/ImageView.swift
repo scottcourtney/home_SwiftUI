@@ -14,10 +14,12 @@ struct ImageView: View {
     @State private var data: Data?
     @State private var image: UIImage?
     @StateObject var localFileService = LocalFileService()
-    private let folderName = "house_folder"
+//    private let folderName = "house_folder"
     private let fileManager = LocalFileService.instance
     
     let houseId: String?
+    let roomId: String?
+    let folderName: String
 
     
     var body: some View {
@@ -25,7 +27,6 @@ struct ImageView: View {
         {
             Image(uiImage: image)
                 .fitToAspectRatio(1.5)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
                 .overlay(
                     PhotosPicker(
                         selection: $selectedItem,
@@ -59,7 +60,6 @@ struct ImageView: View {
         } else {
             Image("house_img")
                 .fitToAspectRatio(1.5)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
                 .overlay(
                     PhotosPicker(
                         selection: $selectedItem,
@@ -85,6 +85,7 @@ struct ImageView: View {
                                 }
                             }
                         }
+                    
                     , alignment: .bottomTrailing)
                 .onAppear {
                     self.checkIfImageExists()

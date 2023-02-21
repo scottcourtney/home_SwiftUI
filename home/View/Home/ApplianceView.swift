@@ -18,20 +18,27 @@ struct ApplianceView: View {
     
     var body: some View {
         Button(action: {}, label: {
-            HStack(alignment: .center, spacing: 6) {
+            VStack {
                 Image(systemName: "house.circle.fill")
                     .renderingMode(.template)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 30, height: 30, alignment: .center)
+                    .frame(width: 50, height: 50, alignment: .center)
                     .foregroundColor(.gray)
                 
                 Text((appliance.nickname?.uppercased())!)
-                    .fontWeight(.light)
+                    .font(.system(
+                        size: 12,
+                        weight: .light,
+                        design: .default))
                     .foregroundColor(.gray)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(2)
                 
-                Spacer()
+                
             }//: HSTACK
+            .frame(width: 55.0, height: 55.0)
+
             .padding()
             .background(Color.white.cornerRadius(12))
             .background(
@@ -69,12 +76,12 @@ struct ApplianceView: View {
 }
 
 // MARK: - PREVIEW
-//
-//struct ApplianceView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ApplianceView(appliance: (users.document?.house![0].interior?.appliances![0])!)
-//            .previewLayout(.sizeThatFits)
-//            .padding()
-//    }
-//}
+
+struct ApplianceView_Previews: PreviewProvider {
+    static var previews: some View {
+        ApplianceView(appliance: Appliance(id: UUID(), nickname: "Refrigerator", brand: "GE", model: "model", website: "www.ge.com", other: "Other Information"))
+            .previewLayout(.sizeThatFits)
+            .padding()
+    }
+}
 

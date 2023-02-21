@@ -18,7 +18,7 @@ struct HouseView: View {
     
     var body: some View {
         VStack(spacing: 10) {
-            ImageView(houseId: house.id)
+            ImageView(houseId: house.id, roomId: nil, folderName: "house_folder")
             Text(house.nickname!)
         }
         .contextMenu {

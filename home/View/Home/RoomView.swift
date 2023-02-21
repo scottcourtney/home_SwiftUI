@@ -21,20 +21,30 @@ struct RoomView: View {
             self.isModal = true
         }, label: {
             HStack(alignment: .center, spacing: 6) {
-                Image(systemName: "house.circle.fill")
-                    .renderingMode(.template)
+                Image("interior_img")
+//                    .renderingMode(.template)
                     .resizable()
-                    .scaledToFit()
-                    .frame(width: 30, height: 30, alignment: .center)
-                    .foregroundColor(.gray)
-                
-                Text((room.nickname?.uppercased())!)
-                    .fontWeight(.light)
-                    .foregroundColor(.gray)
-                
+                    .clipShape(Circle())
+                    .frame(width: 100.0, height: 100.0)
+                    .overlay(Circle().stroke(Color.white,lineWidth:4).shadow(radius: 10))
+                    .padding(.all, 6)
+                    .padding(.trailing, 20)
+                VStack(alignment: .leading) {
+                    Text((room.nickname?.uppercased())!)
+                        .font(.system(size: 20, weight: .bold, design: .default))
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(2)
+                        .padding(.bottom, 6)
+                    Text((room.roomType?.uppercased())!)
+                        .font(.system(size: 12, weight: .light, design: .default))
+                        .foregroundColor(.gray)
+                }
                 Spacer()
+
             }//: HSTACK
-            .padding()
+            .frame(maxWidth: .infinity, alignment: .center)
+//            .padding()
             .background(Color.white.cornerRadius(12))
             .background(
                 RoundedRectangle(cornerRadius: 12)
@@ -59,13 +69,3 @@ struct RoomView: View {
         })
     }
 }
-
-// MARK: - PREVIEW
-//
-//struct RoomView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RoomView(room: (users.document?.house![0].interior?.rooms![0])!)
-//            .previewLayout(.sizeThatFits)
-//            .padding()
-//    }
-//}

@@ -7,223 +7,63 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EB7B9CCA-97FC-4EFA-9A80-1CD926B3BFE4"
+            uuid = "DFF97243-49CF-4F30-B0DC-CC436298E001"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "home/Data/Api.swift"
+            filePath = "home/App/Service/ApiService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "addRoom()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "EB7B9CCA-97FC-4EFA-9A80-1CD926B3BFE4 - 6d3926dbcda45424"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "home.Api.addRoom() -&gt; ()"
-                  moduleName = "home"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bluegorilla/Development/BlueGorilla/home/home/Data/Api.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "127"
-                  endingLineNumber = "127"
-                  offsetFromSymbolStart = "4318">
-               </Location>
-               <Location
-                  uuid = "EB7B9CCA-97FC-4EFA-9A80-1CD926B3BFE4 - 68324c7ee411e301"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in home.Api.addRoom() -&gt; ()"
-                  moduleName = "home"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bluegorilla/Development/BlueGorilla/home/home/Data/Api.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "128"
-                  endingLineNumber = "128"
-                  offsetFromSymbolStart = "24">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D11C4810-83AA-4C51-9F30-AB3714329270"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "home/Utility/ScannerHandler.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "setupCaptureSession()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F9B6522B-76A3-4990-9F2E-D1CA490BF399"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "home/Utility/ScannerHandler.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "metadataOutput(_:didOutput:from:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "56352ECD-CCA4-4A7F-A3E5-BEEF0CB4231E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "home/Utility/SessionStore.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "signIn(email:password:handler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6A91C94B-AF86-4EED-932A-0F50776F5B69"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "home/Utility/SessionStore.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "listen()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4BC2F8F2-B34A-47A1-9FEA-FBFABE1D17B7"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "home/Utility/SessionStore.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "listen()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "016DF183-B3AB-47FF-9FFD-7905802194BD"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "home/View/Forms/ApplianceFormView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "body"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "016DF183-B3AB-47FF-9FFD-7905802194BD - 2d9a86e35d804429"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool) -&gt; () in closure #1 () -&gt; () in closure #1 () -&gt; SwiftUI.Button&lt;SwiftUI.Text&gt; in closure #2 () -&gt; &lt;&lt;opaque return type of static SwiftUI.ToolbarContentBuilder.buildBlock&lt;&#x3c4;_0_0 where &#x3c4;_0_0: SwiftUI.ToolbarContent&gt;(&#x3c4;_0_0) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.toolbar&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ToolbarContent&gt;(content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0 in home.ApplianceFormView.body.getter : some"
-                  moduleName = "home"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bluegorilla/Development/BlueGorilla/home/home/View/Forms/ApplianceFormView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "117">
-               </Location>
-               <Location
-                  uuid = "016DF183-B3AB-47FF-9FFD-7905802194BD - 8641cab702dfae1a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (home.User) -&gt; () in closure #1 (Swift.Bool) -&gt; () in closure #1 () -&gt; () in closure #1 () -&gt; SwiftUI.Button&lt;SwiftUI.Text&gt; in closure #2 () -&gt; &lt;&lt;opaque return type of static SwiftUI.ToolbarContentBuilder.buildBlock&lt;A where A: SwiftUI.ToolbarContent&gt;(A) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.toolbar&lt;A where A1: SwiftUI.ToolbarContent&gt;(content: () -&gt; A1) -&gt; some&gt;&gt;.0 in home.ApplianceFormView.body.getter : some"
-                  moduleName = "home"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bluegorilla/Development/BlueGorilla/home/home/View/Forms/ApplianceFormView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "103">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "9E6FA2D8-05AB-4544-B65C-8FE4A3C356E6"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "home/Data/Api.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "getUserData(userId:completion:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E5BCA5AB-ED09-44BC-A02A-0661ACE28D4E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "home/View/Home/SignUpView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "signUpUser(userEmail:userPassword:)"
+            landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "9E6FA2D8-05AB-4544-B65C-8FE4A3C356E6 - 4a169d6fa3c088e9"
+                  uuid = "E5BCA5AB-ED09-44BC-A02A-0661ACE28D4E - c679507e05ae1fc4"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "home.Api.getUserData(userId: Swift.String, completion: (home.User) -&gt; ()) -&gt; ()"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in closure #1 (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in home.SignUpView.signUpUser(userEmail: Swift.String, userPassword: Swift.String) -&gt; ()"
                   moduleName = "home"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bluegorilla/Development/BlueGorilla/home/home/Data/Api.swift"
+                  urlString = "file:///Users/bluegorilla/Development/BlueGorilla/home/home/View/Home/SignUpView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "39"
-                  endingLineNumber = "39"
-                  offsetFromSymbolStart = "1187">
+                  startingLineNumber = "94"
+                  endingLineNumber = "94"
+                  offsetFromSymbolStart = "48">
                </Location>
                <Location
-                  uuid = "9E6FA2D8-05AB-4544-B65C-8FE4A3C356E6 - e2bd68cf4918f66b"
+                  uuid = "E5BCA5AB-ED09-44BC-A02A-0661ACE28D4E - 2a7189116a2462af"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Foundation.Data, Alamofire.AFError&gt;) -&gt; () in home.Api.getUserData(userId: Swift.String, completion: (home.User) -&gt; ()) -&gt; ()"
+                  symbolName = "closure #1 (home.User) -&gt; () in closure #1 (Swift.Bool) -&gt; () in closure #1 (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in home.SignUpView.signUpUser(userEmail: Swift.String, userPassword: Swift.String) -&gt; ()"
                   moduleName = "home"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bluegorilla/Development/BlueGorilla/home/home/Data/Api.swift"
+                  urlString = "file:///Users/bluegorilla/Development/BlueGorilla/home/home/View/Home/SignUpView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40"
-                  offsetFromSymbolStart = "694">
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "583">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -231,139 +71,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8ECB57EB-140F-42D5-8F36-1C6FFC5FFDFD"
+            uuid = "21332D9F-99A9-4A94-A08D-67BDB58BEA01"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "home/Services/AuthService.swift"
+            filePath = "home/View/Home/MiscGridView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0B7C6354-B42E-4FFA-B438-7E1AF3099D9E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "home/Services/AuthService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61">
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "readFile()"
+            landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "0B7C6354-B42E-4FFA-B438-7E1AF3099D9E - 89dfb3634674b866"
+                  uuid = "21332D9F-99A9-4A94-A08D-67BDB58BEA01 - b23b4d979702edba"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in home.AuthService.signInUser(userEmail: Swift.String, userPassword: Swift.String, completionHandler: (Swift.Optional&lt;Swift.Bool&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  symbolName = "home.MiscGridView.readFile() -&gt; ()"
                   moduleName = "home"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bluegorilla/Development/BlueGorilla/home/home/Services/AuthService.swift"
+                  urlString = "file:///Users/bluegorilla/Development/BlueGorilla/home/home/View/Home/MiscGridView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "61"
-                  endingLineNumber = "61"
-                  offsetFromSymbolStart = "1526">
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "66">
                </Location>
                <Location
-                  uuid = "0B7C6354-B42E-4FFA-B438-7E1AF3099D9E - d2b97012561cbcd7"
+                  uuid = "21332D9F-99A9-4A94-A08D-67BDB58BEA01 - b23b4d979702edba"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (home.User) -&gt; () in closure #1 (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in home.AuthService.signInUser(userEmail: Swift.String, userPassword: Swift.String, completionHandler: (Swift.Optional&lt;Swift.Bool&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  symbolName = "home.MiscGridView.readFile() -&gt; ()"
                   moduleName = "home"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bluegorilla/Development/BlueGorilla/home/home/Services/AuthService.swift"
+                  urlString = "file:///Users/bluegorilla/Development/BlueGorilla/home/home/View/Home/MiscGridView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "62"
-                  endingLineNumber = "62"
-                  offsetFromSymbolStart = "24">
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "673">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "94294DA7-08F4-4AF4-9D7F-2669ABC08B7E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "home/Services/AuthService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "680BA674-B727-47DD-B30A-D2C0EC1D4C12"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "home/Utility/Utils.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "getSessionManager()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EDBFA156-899A-499D-AC5D-0806E6397E02"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "home/View/Home/SignInView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "signInUser(userEmail:userPassword:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "28199E59-7406-4A82-8DF1-6B233264C8AF"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "home/View/Home/SignInView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "signInUser(userEmail:userPassword:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BF749E4B-6F1A-4A55-A28A-780FE299CB0B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "home/Data/Api.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "getToken()"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

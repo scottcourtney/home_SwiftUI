@@ -76,6 +76,7 @@ struct MiscGridView: View {
                 LightbulbDetailView(lightbulbs: lightbulbs)
             })
         }//: HSTACK
+        .padding(.horizontal, 10)
         .onChange(of: houseIndex) { value in
             readFile()
         }

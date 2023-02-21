@@ -27,34 +27,14 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            VStack(spacing: 0) {
-//                NavigationBarView()
-//                    .padding(.horizontal, 15)
-//                    .padding(.bottom)
-//                    .padding(.top, UIApplication
-//                        .shared
-//                        .connectedScenes
-//                        .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
-//                        .first { $0.isKeyWindow }?.safeAreaInsets.top)
-//                    .background(.white)
-//                    .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 5)
-//
+//            VStack(spacing: 0) {
+
                 ScrollView(.vertical, showsIndicators: false, content: {
                     VStack(spacing: 0) {
                         HouseTabView(houseIndex: $houseIndex.houseIndex)
-                            .padding(.vertical, 20)
+                            .padding(.bottom, 0)
                             .frame(height: UIScreen.main.bounds.width)
-                        
-                        //                            // Segment Picker
-                        //                            Picker("Location", selection: $location) {
-                        //                                ForEach(Location.allCases) { location in
-                        //                                    Text(location.rawValue.capitalized).tag(location)
-                        //                                }
-                        //                            }
-                        //                            .pickerStyle(SegmentedPickerStyle())
-                        //                            .padding(.leading, 30)
-                        //                            .padding(.trailing, 30)
-                        
+             
                         RoomGridView(houseIndex: $houseIndex.houseIndex)
                             .padding(.bottom, 10)
                         
@@ -63,13 +43,11 @@ struct ContentView: View {
 
                         MiscGridView(houseIndex: $houseIndex.houseIndex)
                             
-//                        FooterView()
-//                            .padding(.horizontal)
                     }//: VSTACK
                 })//: SCROLL
-            } //: VSTACK
+//            } //: VSTACK
             .background(colorGray.ignoresSafeArea(.all, edges: .all))
         }//: ZSTACK
-        .ignoresSafeArea(.all, edges: .top)
+        .ignoresSafeArea(.all)
     }
 }

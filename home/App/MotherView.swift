@@ -13,21 +13,23 @@ struct MotherView: View {
         
     // MARK: - BODY
         var body: some View {
-            switch viewRouter.currentPage {
-            case .signUpPage:
-                SignUpView()
-            case .signInPage:
-                SignInView()
-            case .contentPage:
-                ContentView()
-            }
+            ContentView()
+
+//            switch viewRouter.currentPage {
+//            case .signUpPage:
+//                SignUpView()
+//            case .signInPage:
+//                SignInView()
+//            case .contentPage:
+//                ContentView()
+//            }
         }
     }
 
 // MARK: - PREVIEW
-struct MotherView_Previews: PreviewProvider {
-    static var previews: some View {
-        MotherView()
-            .environmentObject(ViewRouter())
-    }
-}
+//struct MotherView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MotherView()
+//            .environmentObject(ViewRouter())
+//    }
+//}

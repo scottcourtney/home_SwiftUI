@@ -27,7 +27,6 @@ struct RoomGridView: View {
             }
             ScrollViewReader { scrollView in
                 ScrollView(.horizontal, showsIndicators: false, content: {
-                    //            ScrollViewReader { proxy in
                     HStack {
                         ForEach(rooms) { room in
                             RoomView(room: room)
@@ -37,44 +36,35 @@ struct RoomGridView: View {
                             showFormView.toggle()
                         }, label: {
                             HStack(alignment: .center, spacing: 6) {
-                                Image(systemName: "house.circle.fill")
-                                    .renderingMode(.template)
+                                Image(systemName: "plus.app.fill")
                                     .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 30, height: 30, alignment: .center)
+                                    .clipShape(Circle())
+                                    .frame(width: 50.0, height: 50.0)
+                                    .overlay(Circle().stroke(Color.white,lineWidth:4).shadow(radius: 10))
+                                    .padding(.all, 6)
                                     .foregroundColor(.gray)
-                                
-                                Text(("Add a Room").uppercased())
-                                    .fontWeight(.light)
-                                    .foregroundColor(.gray)
-                                
-                                Spacer()
                             }//: HSTACK
-                            .padding()
+                            .frame(width: 100.0, height: 100.0)
                             .background(Color.white.cornerRadius(12))
                             .background(
                                 RoundedRectangle(cornerRadius: 12)
                                     .stroke(Color.gray, lineWidth: 1)
                             )
                         })//: BUTTON
+                        .padding(.trailing, 10)
                         .fullScreenCover(isPresented: $showFormView, onDismiss: {
                             readFile()
                         }, content: {
                             RoomFormView(houseIndex: $houseIndex)
                         })
-                        
-                        //                    .frame(height: 140)
-                        //                    .padding(.vertical, 10)
                         .onChange(of: houseIndex, perform: { value in
                             readFile()
                             withAnimation {
-                                scrollView.scrollTo(position.first)
+                                scrollView.scrollTo(position.first, anchor: .leading)
                             }
                         })
-                    }
-                    //            }
+                    }.padding(.leading, 10)
                 }).onAppear(perform: readFile)
-                    .padding(.leading, 10)
             }
     }
         .padding(.bottom, 10)

@@ -106,7 +106,7 @@ struct RoomDetailView: View {
                 }//: FORM
             }//: VSTACK
             .navigationTitle(room.nickname!)
-
+            
 //            .toolbar {
 //                if isEditing {
 //                    ToolbarItemGroup(placement: .navigationBarTrailing){
@@ -135,9 +135,12 @@ struct RoomDetailView: View {
     }
 }
 
-//struct RoomDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RoomDetailView(room: (users.document?.house![0].interior?.rooms![0])!)
-//            .previewLayout(.fixed(width: 375, height: 812))
-//    }
-//}
+// MARK: - PREVIEW
+
+struct RoomDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        RoomDetailView(room: Room(flooring: Flooring(floorType: "Floor Type", floorCollectionName: "Lowes", floorStyleNumber: "1234", floorBrand: "Lowes Brand", groutColor: "blue"), roomType: "bedroom", ceiling: Ceiling(ceilingPaintBrand: "Lowes", ceilingPaintColor: "Green", ceilingPaintFinish: "Satin"), nickname: "Scotts Room", id: "1234", walls: Walls(wallType: "sheetrock", wallPaintBrand: "Sherwin Williams", wallPaintColor: "White", wallPaintFinish: "Gloss", groutColor: "Gray")))
+            .previewLayout(.sizeThatFits)
+            .padding()
+    }
+}
