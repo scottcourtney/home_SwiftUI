@@ -19,13 +19,9 @@ struct ApplianceView: View {
     var body: some View {
         Button(action: {}, label: {
             VStack {
-                Image(systemName: "house.circle.fill")
-                    .renderingMode(.template)
+                Image(appliance.type ?? "")
                     .resizable()
-                    .scaledToFit()
-                    .frame(width: 50, height: 50, alignment: .center)
-                    .foregroundColor(.gray)
-                
+                    .frame(width: 50, height: 50)                
                 Text((appliance.nickname?.uppercased())!)
                     .font(.system(
                         size: 12,
@@ -37,8 +33,7 @@ struct ApplianceView: View {
                 
                 
             }//: HSTACK
-            .frame(width: 55.0, height: 55.0)
-
+            .frame(maxWidth: .infinity, maxHeight: 55.0)
             .padding()
             .background(Color.white.cornerRadius(12))
             .background(
@@ -79,7 +74,7 @@ struct ApplianceView: View {
 
 struct ApplianceView_Previews: PreviewProvider {
     static var previews: some View {
-        ApplianceView(appliance: Appliance(id: UUID(), nickname: "Refrigerator", brand: "GE", model: "model", website: "www.ge.com", other: "Other Information"))
+        ApplianceView(appliance: Appliance(id: UUID(), nickname: "Refrigerator", brand: "GE", model: "model", website: "www.ge.com", other: "Other Information", type: "other"))
             .previewLayout(.sizeThatFits)
             .padding()
     }

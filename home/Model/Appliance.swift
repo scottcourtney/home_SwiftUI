@@ -10,7 +10,7 @@ import Foundation
 // MARK: - Appliance
 struct Appliance: Codable, Identifiable, Hashable {
     let id: UUID
-    let nickname, brand, model, website, other: String?
+    let nickname, brand, model, website, other, type: String?
 
     
     enum CodingKeys: String, CodingKey {
@@ -20,5 +20,6 @@ struct Appliance: Codable, Identifiable, Hashable {
         case model = "model"
         case website = "website"
         case other = "other"
+        case type = "type"
     }
 }

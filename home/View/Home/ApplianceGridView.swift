@@ -39,35 +39,30 @@ struct ApplianceGridView: View {
                         Button(action: {
                             showFormView.toggle()
                         }, label: {
+                            
                             HStack(alignment: .center, spacing: 6) {
-                                Image(systemName: "house.circle.fill")
-                                    .renderingMode(.template)
+                                Image(systemName: "plus.app.fill")
                                     .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 30, height: 30, alignment: .center)
+                                    .clipShape(Circle())
+                                    .frame(width: 50.0, height: 50.0)
+                                    .overlay(Circle().stroke(Color.white,lineWidth:4).shadow(radius: 10))
+                                    .padding(.all, 6)
                                     .foregroundColor(.gray)
-                                
-                                Text(("Add an Appliance").uppercased())
-                                    .fontWeight(.light)
-                                    .foregroundColor(.gray)
-                                
-                                Spacer()
                             }//: HSTACK
-                            .padding()
+                            .frame(width: 80.0, height: 80.0)
                             .background(Color.white.cornerRadius(12))
                             .background(
                                 RoundedRectangle(cornerRadius: 12)
                                     .stroke(Color.gray, lineWidth: 1)
                             )
                         })//: BUTTON
+                        .padding(.trailing, 10)
                         .fullScreenCover(isPresented: $showFormView, onDismiss: {
                             readFile()
                         }, content: {
                             ApplianceFormView(houseIndex: $houseIndex)
                         })
-                        
-                        //                    .frame(height: 140)
-                        //                    .padding(.vertical, 10)
+                    
                         .onChange(of: houseIndex) { value in
                             readFile()
                             withAnimation {
@@ -77,11 +72,9 @@ struct ApplianceGridView: View {
                     }.padding(.leading, 10)
                     
                 }).onAppear(perform: readFile)
-//                    .padding(.leading, 10)
             }
         }
         .padding(.bottom, 10)
-        
     }
     
     func readFile() {

@@ -20,7 +20,8 @@
                             "brand": "GE",
                             "model": "3122",
                             "website": "https://www.ge.com",
-                            "other": "Other important information"
+                            "other": "Other important information",
+                            "type": "microwave"
                         },
                         {
                             "nickname": "Refrigerator",
@@ -28,7 +29,8 @@
                             "brand": "GE",
                             "model": "3122",
                             "website": "https://www.ge.com",
-                            "other": "Other important information"
+                            "other": "Other important information",
+                            "type": "refrigerator"
                         },
                         {
                             "nickname": "Stove",
@@ -36,7 +38,8 @@
                             "brand": "GE",
                             "model": "3122",
                             "website": "https://www.ge.com",
-                            "other": "Other important information"
+                            "other": "Other important information",
+                            "type": "stove"
                         },
                         {
                             "nickname": "Dishwasher",
@@ -44,7 +47,17 @@
                             "brand": "GE",
                             "model": "3122",
                             "website": "https://www.ge.com",
-                            "other": "Other important information"
+                            "other": "Other important information",
+                            "type": "dishwasher"
+                        },
+                        {
+                            "nickname": "Other",
+                            "appliance_id": "73925daed836609d85d5da21",
+                            "brand": "GE",
+                            "model": "3122",
+                            "website": "https://www.ge.com",
+                            "other": "Other important information",
+                            "type": "other"
                         }
 
                     ],

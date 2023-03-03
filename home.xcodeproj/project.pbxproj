@@ -64,6 +64,8 @@
 		205D2A0D29428D3E009DE988 /* CodableBundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205D2A0C29428D3E009DE988 /* CodableBundleExtension.swift */; };
 		205D2A0F2948BECD009DE988 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205D2A0E2948BECD009DE988 /* RoomView.swift */; };
 		20DA35A42988180900F46707 /* CardStack in Frameworks */ = {isa = PBXBuildFile; productRef = 20DA35A32988180900F46707 /* CardStack */; };
+		20F010F029A697F900076657 /* ScalingHeaderScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 20F010EF29A697F900076657 /* ScalingHeaderScrollView */; };
+		20F010F329A6A26D00076657 /* RoomDetailHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F010F229A6A26D00076657 /* RoomDetailHelper.swift */; };
 		2DAD84E117A3D0B1631EAA2F /* Pods_home.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246BA4CF65C006CFF6D19B24 /* Pods_home.framework */; };
 		A8C39C9DE1F89F2278406C34 /* Pods_homeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0A58DBFC632FB3FE2CB6C5 /* Pods_homeTests.framework */; };
 /* End PBXBuildFile section */
@@ -146,6 +148,7 @@
 		205D2A0A29428B2F009DE988 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		205D2A0C29428D3E009DE988 /* CodableBundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableBundleExtension.swift; sourceTree = "<group>"; };
 		205D2A0E2948BECD009DE988 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
+		20F010F229A6A26D00076657 /* RoomDetailHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailHelper.swift; sourceTree = "<group>"; };
 		246BA4CF65C006CFF6D19B24 /* Pods_home.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_home.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55987928ADF7DEBC41A2AFF6 /* Pods-homeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-homeTests.release.xcconfig"; path = "Target Support Files/Pods-homeTests/Pods-homeTests.release.xcconfig"; sourceTree = "<group>"; };
 		6506BBD9FA049F368898C115 /* Pods_home_homeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_home_homeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +167,7 @@
 				20DA35A42988180900F46707 /* CardStack in Frameworks */,
 				203C1FA1295CE8C300BD9C5D /* FirebaseAuth in Frameworks */,
 				203C1FB0296084D800BD9C5D /* CodeScanner in Frameworks */,
+				20F010F029A697F900076657 /* ScalingHeaderScrollView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +291,7 @@
 		205D29F829423BDE009DE988 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				20F010F129A6A25800076657 /* Helpers */,
 				203C20742968C59400BD9C5D /* Forms */,
 				205D2A0229426629009DE988 /* Home */,
 				205D2A0329426638009DE988 /* Detail */,
@@ -373,6 +378,14 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
+		20F010F129A6A25800076657 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				20F010F229A6A26D00076657 /* RoomDetailHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		82BC0FC1A20F0AB67C0EB615 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -418,6 +431,7 @@
 				203C1FA0295CE8C300BD9C5D /* FirebaseAuth */,
 				203C1FAF296084D800BD9C5D /* CodeScanner */,
 				20DA35A32988180900F46707 /* CardStack */,
+				20F010EF29A697F900076657 /* ScalingHeaderScrollView */,
 			);
 			productName = home;
 			productReference = 205D29CA294128F3009DE988 /* home.app */;
@@ -498,6 +512,7 @@
 				203C1F9F295CE8C300BD9C5D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				203C1FAE296084D800BD9C5D /* XCRemoteSwiftPackageReference "CodeScanner" */,
 				20DA35A22988180900F46707 /* XCRemoteSwiftPackageReference "CardStack" */,
+				20F010EE29A697F900076657 /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */,
 			);
 			productRefGroup = 205D29CB294128F3009DE988 /* Products */;
 			projectDirPath = "";
@@ -656,6 +671,7 @@
 				203C1FAD295F3E1300BD9C5D /* ApplianceDetailView.swift in Sources */,
 				203C1FAB295DEC3400BD9C5D /* ApplianceView.swift in Sources */,
 				203C1FA3295CE98A00BD9C5D /* ViewRouter.swift in Sources */,
+				20F010F329A6A26D00076657 /* RoomDetailHelper.swift in Sources */,
 				203C1F9029565B7100BD9C5D /* Exterior.swift in Sources */,
 				203C1F7C29563D1600BD9C5D /* RoomGridView.swift in Sources */,
 				203C208F297735BF00BD9C5D /* ExteriorView.swift in Sources */,
@@ -1052,6 +1068,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		20F010EE29A697F900076657 /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/ScalingHeaderScrollView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.6;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1069,6 +1093,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 20DA35A22988180900F46707 /* XCRemoteSwiftPackageReference "CardStack" */;
 			productName = CardStack;
+		};
+		20F010EF29A697F900076657 /* ScalingHeaderScrollView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 20F010EE29A697F900076657 /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */;
+			productName = ScalingHeaderScrollView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

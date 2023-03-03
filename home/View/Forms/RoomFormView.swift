@@ -111,26 +111,27 @@ struct RoomFormView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing){
                     Button("Save", action: {
-                        ApiService().addAppliance(
-                            userId: userId!,
-                            houseId: houses[self.houseIndex].id!,
-                            nickname: nickname,
-                            brand: brand,
-                            model: model,
-                            website: website,
-                            otherInformation: otherInformation) { (result) in
-                                if result == true {
-                                    ApiService().getUserData(userId: userId!) { (result) in
-                                        ApplianceGridView(houseIndex: $houseIndex).readFile()
-                                        print(result)
-                                        withAnimation {
-                                            dismiss()
-                                        }
-                                    }
-                                }
-                            }
-                        
-                        print("Edit Button Tapped")
+//                        ApiService().addAppliance(
+//                            userId: userId!,
+//                            houseId: houses[self.houseIndex].id!,
+//                            nickname: nickname,
+//                            brand: brand,
+//                            model: model,
+//                            website: website,
+//                            otherInformation: otherInformation,
+//                            type: type) { (result) in
+//                                if result == true {
+//                                    ApiService().getUserData(userId: userId!) { (result) in
+//                                        ApplianceGridView(houseIndex: $houseIndex).readFile()
+//                                        print(result)
+//                                        withAnimation {
+//                                            dismiss()
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        
+//                        print("Edit Button Tapped")
                     })//: BUTTON
                     
                 }

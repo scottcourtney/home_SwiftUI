@@ -192,6 +192,7 @@ class ApiService : ObservableObject {
         model: String,
         website: String,
         otherInformation: String,
+        type: String,
         completion: @escaping (Bool) -> ()) {
             let jwtTokenString = getToken()
             
@@ -211,7 +212,8 @@ class ApiService : ObservableObject {
                                     "brand": brand,
                                     "model": model,
                                     "website": website,
-                                    "other": otherInformation
+                                    "other": otherInformation,
+                                    "type": type
                                 ]
                              ]
                 ]

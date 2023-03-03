@@ -10,15 +10,15 @@ import SwiftUI
 struct RoomView: View {
     // MARK: - PROPERTY
     
-    @State var isModal: Bool = false
-    
+    @State var isPresented: Bool = false
+
     let room: Room
 
     // MARK: - BODY
     
     var body: some View {
         Button(action: {
-            self.isModal = true
+            self.isPresented = true
         }, label: {
             HStack(alignment: .center, spacing: 6) {
                 Image("interior_img")
@@ -64,7 +64,7 @@ struct RoomView: View {
                 }
             }
         })//: BUTTON
-        .sheet(isPresented: $isModal, content: {
+        .fullScreenCover(isPresented: $isPresented, content: {
             RoomDetailView(room: room)
         })
     }
