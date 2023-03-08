@@ -14,95 +14,96 @@ struct RoomFormView: View {
     @Environment(\.dismiss) private var dismiss
 
     @Binding var houseIndex: Int
+    var room: Room?
     @State private var houses: [House] = []
     @State private var nickname: String = ""
-    @State private var brand: String = ""
-    @State private var model: String = ""
-    @State private var website: String = ""
-    @State private var otherInformation: String = ""
+    @State private var wallPaintBrand: String = ""
+    @State private var wallPaintColor: String = ""
+    @State private var wallPaintFinish: String = ""
+    @State private var ceilingPaintBrand: String = ""
+    @State private var ceilingPaintColor: String = ""
+    @State private var ceilingPaintFinish: String = ""
+    @State private var floorType: String = ""
+    @State private var floorBrand: String = ""
+    @State private var floorCollectionName: String = ""
+    @State private var floorStyleNumber: String = ""
+    @State private var floorGroutColor: String = ""
+
 
     var body: some View {
+    
         NavigationView() {
+        
             VStack {
+                HStack {
+                    Spacer()
+                    Label {
+                        TextField("Name",
+                                  text: $nickname
+                        )
+                    } icon: {}
+                    Spacer()
+                }
                 Form {
                     Section(header: Text("Wall")) {
                         Label {
-                            TextField("Name",
-                                      text: $nickname
+                            TextField("Paint Brand",
+                                      text: $wallPaintBrand
                             )
                         } icon: {}
                         Label {
-                            TextField("Brand",
-                                      text: $brand
+                            TextField("Color",
+                                      text: $wallPaintColor
                             )
                         } icon: {}
                         Label {
-                            TextField("Model",
-                                      text: $model
-                            )
-                        } icon: {}
-                        Label {
-                                TextField("Website",
-                                          text: $website
+                                TextField("Finish",
+                                          text: $wallPaintFinish
                                 )
-                        } icon: {}
-                        Label {
-                            TextField("Other Information",
-                                      text: $otherInformation
-                            )
                         } icon: {}
                     }//: SECTION
                     Section(header: Text("Ceiling")) {
                         Label {
-                            TextField("Name",
-                                      text: $nickname
+                            TextField("Paint Brand",
+                                      text: $ceilingPaintBrand
                             )
                         } icon: {}
                         Label {
-                            TextField("Brand",
-                                      text: $brand
+                            TextField("Color",
+                                      text: $ceilingPaintColor
                             )
                         } icon: {}
                         Label {
-                            TextField("Model",
-                                      text: $model
-                            )
-                        } icon: {}
-                        Label {
-                                TextField("Website",
-                                          text: $website
-                                )
-                        } icon: {}
-                        Label {
-                            TextField("Other Information",
-                                      text: $otherInformation
+                            TextField("Finish",
+                                      text: $ceilingPaintFinish
                             )
                         } icon: {}
                     }//: SECTION
                     Section(header: Text("Flooring")) {
                         Label {
-                            TextField("Name",
-                                      text: $nickname
+                            TextField("Type",
+                                      text: $floorType
                             )
                         } icon: {}
                         Label {
                             TextField("Brand",
-                                      text: $brand
+                                      text: $floorBrand
                             )
                         } icon: {}
                         Label {
-                            TextField("Model",
-                                      text: $model
+                            TextField("Collection",
+                                      text: $floorCollectionName
                             )
                         } icon: {}
                         Label {
-                                TextField("Website",
-                                          text: $website
+                                TextField("Style",
+                                          text: $floorStyleNumber
                                 )
                         } icon: {}
                         Label {
-                            TextField("Other Information",
-                                      text: $otherInformation
+                            TextField("Grout Color",
+                                      text: $floorGroutColor
+                                      
                             )
                         } icon: {}
                     }//: SECTION
@@ -146,7 +147,10 @@ struct RoomFormView: View {
                     
                 }
             }
-            .onAppear(perform: readFile)
+            .onAppear {
+                readFile()
+                loadEditData()
+            }
         }//: NAVIGATIONVIEW
 
     }
@@ -154,6 +158,22 @@ struct RoomFormView: View {
         if let jsonData: User = Bundle.main.decode("data.json") {
             self.houses = (jsonData.document?.house!)!
         }
+    }
+    
+    private func loadEditData() {
+        self.nickname = room?.nickname ?? ""
+        self.wallPaintBrand = room?.walls?.wallPaintBrand ?? ""
+        self.wallPaintColor = room?.walls?.wallPaintColor ?? ""
+        self.wallPaintFinish = room?.walls?.wallPaintFinish ?? ""
+        self.ceilingPaintBrand = room?.ceiling?.ceilingPaintBrand ?? ""
+        self.ceilingPaintColor = room?.ceiling?.ceilingPaintColor ?? ""
+        self.ceilingPaintFinish = room?.ceiling?.ceilingPaintFinish ?? ""
+        self.floorType = room?.flooring?.floorType ?? ""
+        self.floorBrand = room?.flooring?.floorBrand ?? ""
+        self.floorCollectionName = room?.flooring?.floorCollectionName ?? ""
+        self.floorStyleNumber = room?.flooring?.floorStyleNumber ?? ""
+        self.floorGroutColor = room?.flooring?.groutColor ?? ""
+
     }
 }
 

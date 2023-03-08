@@ -28,6 +28,9 @@ struct FilterDateView: View {
                     }),
                    displayedComponents: .date
         )
+        .onChange(of: filterDate) { value in
+            print(filterDate)
+        }
         .onAppear {
             if let date = dateFormatter.date(from: filterDate) {
                 self.date = date

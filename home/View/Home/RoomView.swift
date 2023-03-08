@@ -11,6 +11,7 @@ struct RoomView: View {
     // MARK: - PROPERTY
     
     @State var isPresented: Bool = false
+    @Binding var houseIndex: Int
 
     let room: Room
 
@@ -60,12 +61,13 @@ struct RoomView: View {
                 Button(role: .cancel) {
                     print("Cancel")
                 } label: {
-                    Label("Cancel", systemImage: "")
+                    Label("Cancel", systemImage: "x.circle")
+                        .labelStyle(TitleOnlyLabelStyle())
                 }
             }
         })//: BUTTON
         .fullScreenCover(isPresented: $isPresented, content: {
-            RoomDetailView(room: room)
+            RoomDetailView(room: room, houseIndex: $houseIndex)
         })
     }
 }

@@ -23,7 +23,7 @@ class ApiService : ObservableObject {
     }
     
     // READ DATA
-    func getUserData(userId: String, completion: @escaping (User) -> ()) {
+    func getUserData(completion: @escaping (User) -> ()) {
         let jwtTokenString = getToken()
         let params: Parameters = [
             "collection": COLLECTION,
@@ -185,7 +185,6 @@ class ApiService : ObservableObject {
     
     // ADD APPLIANCE
     func addAppliance(
-        userId: String,
         houseId: String,
         nickname: String,
         brand: String,
@@ -232,6 +231,92 @@ class ApiService : ObservableObject {
                     }
                 }
         }
+    
+    // ADD LIGHTBULB
+    func addLightbulb(
+        houseId: String,
+        nickname: String,
+        id: UUID,
+        brand: String,
+        model: String,
+        watts: String,
+        completion: @escaping (Bool) -> ()) {
+            let jwtTokenString = getToken()
+            
+            let params: Parameters = [
+                "collection": COLLECTION,
+                "database": DATABASE,
+                "dataSource": DATASOURCE,
+                "filter": [
+                    "userInfo.user_id": userId!,
+                    "house.house_id": ["$oid": houseId]
+                ],
+                "update": [
+                    "$push": [ "house.$.interior.Misc.lightbulbs":
+                                [
+                                    "nickname": nickname,
+                                    "id": id.uuidString,
+                                    "brand": brand,
+                                    "watts": watts,
+                                    "model": model
+                                ]
+                             ]
+                ]
+            ]
+            
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json",
+                "jwtTokenString": jwtTokenString
+            ]
+            
+            AF.request(API_URL + "/updateOne", method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
+                .responseJSON { response in
+                    print(response)
+                    DispatchQueue.main.async {
+                        completion(true)
+                    }
+                }
+        }
+    
+    // REMOVE LIGHTBULB
+    func removeLightbulb(
+        houseId: String,
+        id: UUID,
+        completion: @escaping (Bool) -> ()) {
+            let jwtTokenString = getToken()
+            
+            let params: Parameters = [
+                "collection": COLLECTION,
+                "database": DATABASE,
+                "dataSource": DATASOURCE,
+                "filter":
+                    [
+                        "userInfo.user_id": userId,
+                        "house.house_id": ["$oid": houseId]
+                    ],
+                    "update": [
+                        "$pull": [ "house.$.interior.Misc.lightbulbs":
+                                    [
+                                        "id": id.uuidString
+                                    ]
+                                ]
+                            ]
+                ]
+            
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json",
+                "jwtTokenString": jwtTokenString
+            ]
+            
+            AF.request(API_URL + "/updateOne", method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
+                .responseJSON { response in
+                    print(response)
+                    DispatchQueue.main.async {
+                        completion(true)
+                    }
+                }
+        }
+    
     
     // CREATE BLANK DOC
     func createUser(

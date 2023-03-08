@@ -58,15 +58,18 @@ struct ApplianceFormView: View {
                                                 .font(.footnote)
                                                 .foregroundColor(Color.gray)
                                         } else {
-                                            Image(systemName: "")
-                                                .resizable()
+                                            
+                                            Text("other".uppercased())
                                                 .frame(width: 50, height: 50)
                                                 .clipShape(Circle())
                                                 .overlay(Circle().stroke(Color.gray, lineWidth: 1))
-                                                .padding(.top, 5)
-                                            Text("other".uppercased())
+                                                
+                                                .padding(.trailing, 5)
+                                                .padding(.bottom, 20)
                                                 .font(.footnote)
                                                 .foregroundColor(Color.gray)
+                                            
+                                            
                                         }
                                     }
                                 })
@@ -107,7 +110,7 @@ struct ApplianceFormView: View {
                 ToolbarItemGroup(placement: .navigationBarTrailing){
                     Button("Save", action: {
                         ApiService().addAppliance(
-                            userId: userId!,
+//                            userId: userId!,
                             houseId: houses[self.houseIndex].id!,
                             nickname: nickname,
                             brand: brand,
@@ -116,7 +119,7 @@ struct ApplianceFormView: View {
                             otherInformation: otherInformation,
                             type: type) { (result) in
                                 if result == true {
-                                    ApiService().getUserData(userId: userId!) { (result) in
+                                    ApiService().getUserData() { (result) in
                                         ApplianceGridView(houseIndex: $houseIndex).readFile()
                                         print(result)
                                         withAnimation {

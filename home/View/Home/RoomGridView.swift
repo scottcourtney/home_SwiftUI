@@ -29,7 +29,7 @@ struct RoomGridView: View {
                 ScrollView(.horizontal, showsIndicators: false, content: {
                     HStack {
                         ForEach(rooms) { room in
-                            RoomView(room: room)
+                            RoomView(houseIndex: $houseIndex, room: room)
                                 .id(room.id)
                         }
                         Button(action: {

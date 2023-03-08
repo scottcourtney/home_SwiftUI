@@ -11,16 +11,26 @@ struct FilterDetailView: View {
     
     // MARK: - PROPERTY
     @Environment(\.dismiss) var dismiss
+    @StateObject var dismissDisabled = DismissDisabled()
+    @State private var isPresentingConfirm: Bool = false
+
     @State private var isEditing = false
     @State private var filterCount: Int = 0
     @State private var date = Date()
     @State private var futureDate = Date()
     @State private var replaceNotification = false
-
+    
     @State var filters: [Filter]
     
-    let notification = NotificationService()
+    @State private var showingAlert = false
+    @State private var showAddAlert = false
     
+    @State private var nickname: String = ""
+    @State private var size: String = ""
+    @State private var filtersLeft: String = ""
+    @State private var replacementDate: String = ""
+    
+    let notification = NotificationService()
     
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -28,11 +38,18 @@ struct FilterDetailView: View {
         return formatter
     }()
     
+    let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .none
+        return formatter
+    }()
+    
     var body: some View {
+     
         NavigationView() {
             VStack {
                 Form {
-                    ForEach(filters.indices) { index in
+                    ForEach(filters.indices, id: \.self) { index in
                         Section(header: Text(filters[index].nickname ?? "N/A")) {
                             Label {
                                 Text("Size")
@@ -49,18 +66,30 @@ struct FilterDetailView: View {
                                 
                                 Spacer()
                                 
-                                FilterStepperView(filterCount: filters[index].filtersLeft!)
-                                
+                                if let filtersLeft = filters[index].filtersLeft {
+                                    FilterStepperView(filterCount: filtersLeft)
+                                        .environmentObject(dismissDisabled)
+
+                                } else {
+                                    FilterStepperView(filterCount: 0)
+                                        .environmentObject(dismissDisabled)
+
+                                }
                             } icon: {}
-                            
+                                
                             Label {
                                 Text("Replacement Date")
                                     .font(.footnote)
                                     .foregroundColor(.gray)
                                 
-                                FilterDateView(filterDate: filters[index].replacedDate!)
+                                if let replacedDate = filters[index].replacedDate {
+                                    FilterDateView(filterDate: replacedDate)
+                                } else {
+                                    FilterDateView(filterDate: dateFormatter.string(from: Date()))
+                                }
                        
                             } icon: {}
+                                
                             Label {
                                 Text("Order More")
                                     .font(.footnote)
@@ -101,6 +130,8 @@ struct FilterDetailView: View {
                                 }
                             }
                         }//: SECTION
+                        .id(filters[index].id)
+
                     }
                 }//: FORM
             }//: VSTACK
@@ -108,30 +139,86 @@ struct FilterDetailView: View {
                 notification.setupNotificationAuth()
             }
             .toolbar {
-                ToolbarItemGroup(placement: .navigationBarTrailing){
-                    Button("Save", action: {
-                        print("Edit Button Tapped")
-                    })//: BUTTON
-                }
                 ToolbarItemGroup(placement: .navigationBarLeading){
-                    Button(action: {
-                        withAnimation {
-//                            addNewForm()
-                        }
-                        print("Plus Button Tapped")
-
-                    }, label: {
+                    Button(action: { showAddAlert = true }, label: {
                         Image(systemName: "plus")
                     })//: BUTTON
+                    .alert("", isPresented: $showAddAlert) {
+                        TextField("Nickname", text: $nickname)
+                        TextField("Size", text: $size)
+                        TextField("Filters Left", text: $filtersLeft)
+                        Button("Submit", action: addFilter)
+                        Button("Cancel", role: .cancel) {}
+                    } message: {
+                        Text("Add a Filter")
+                    }
+                    
+                }
+                ToolbarItemGroup(placement: .navigationBarTrailing){
+                    Button(action: { showAddAlert = true }, label: {
+                        Label("Save", systemImage: "plus")
+                            .labelStyle(.titleOnly)
+                    })//: BUTTON
+                    .alert("", isPresented: $showAddAlert) {
+                        TextField("Nickname", text: $nickname)
+                        TextField("Size", text: $size)
+                        TextField("Filters Left", text: $filtersLeft)
+                        Button("Submit", action: addFilter)
+                        Button("Cancel", role: .cancel) {}
+                    } message: {
+                        Text("Add a Filter")
+                    }
                     
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Filters")
         }//: NAVIGATIONVIEW
-
-    }
         
+        .interactiveDismissDisabled(dismissDisabled.state)
+    }
+
+    
+    private func removeFilter(id: UUID) {
+        print(id)
+        filters.removeAll(where: { $0.id == id })
+        delete(id: id)
+    }
+    
+    private func addFilter() {
+        filters.append(Filter(id: UUID(), filtersLeft: Int(filtersLeft), nickname: nickname, size: size, replacedDate: dateFormatter.string(from: futureDate), filterNotification: false, filterReplacementDate: dateFormatter.string(from: futureDate)))
+        save()
+    }
+    
+    private func save() {
+        //        let newestLightBulb = lightbulbs.last
+        //        ApiService().addLightbulb(
+        //            houseId: houses[self.houseIndex].id!,
+        //            nickname: newestLightBulb?.nickname ?? "",
+        //            id: newestLightBulb?.id ?? UUID(),
+        //            brand: newestLightBulb?.brand ?? "",
+        //            model: newestLightBulb?.model ?? "",
+        //            watts: newestLightBulb?.watts ?? ""
+        //        ) { (result) in
+        //            if result == true {
+        //                ApiService().getUserData() { (result) in
+        //                }
+        //            }
+        //        }
+    }
+    
+    private func delete(id: UUID) {
+        //        ApiService().removeLightbulb(
+        //            houseId: houses[self.houseIndex].id!,
+        //            id: id
+        //        ) { (result) in
+        //            if result == true {
+        //                ApiService().getUserData() { (result) in
+        //                }
+        //            }
+        //        }
+    }
+    
     func openAmazonProduct(withSize size: String) {
         
         guard let amazonWebURL = URL(string: "https://www.amazon.com/s?k=Filter+Size+\(size)"),
@@ -149,23 +236,9 @@ struct FilterDetailView: View {
     
     func futureDateConversion(replacedDate: Date) {
         var dateComponent = DateComponents()
-//        dateComponent.month = 3
+        //        dateComponent.month = 3
         dateComponent.day = 10
         
         futureDate = Calendar.current.date(byAdding: dateComponent, to: replacedDate)!
     }
-    
-//    func addNewForm() {
-//        let name = ""
-//        let email = ""
-//        let address = ""
-//        let newSection = Section(header: Text("Customer Information")) {
-//            TextField("Customer Name", text: $name)
-//            TextField("Email", text: $email)
-//            TextField("Address", text: $address)
-//        }
-//
-//        sections.append(newSection)
-//
-//    }
 }

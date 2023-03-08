@@ -16,7 +16,7 @@ struct MiscGridView: View {
     @State private var lightbulbs: [Lightbulb] = []
     @State private var showLightbulbListView: Bool = false
     @State private var showFilterListView: Bool = false
-
+    
     // MARK: - BODY
     
     var body: some View {
@@ -44,7 +44,7 @@ struct MiscGridView: View {
                 )
             })//: BUTTON
             .sheet(isPresented: $showFilterListView, onDismiss: {
-//                readFile()
+                readFile()
             }, content: {
                 FilterDetailView(filters: filters)
             })
@@ -71,16 +71,18 @@ struct MiscGridView: View {
                 )
             })//: BUTTON
             .sheet(isPresented: $showLightbulbListView, onDismiss: {
-//                readFile()
+                readFile()
             }, content: {
-                LightbulbDetailView(lightbulbs: lightbulbs)
+                LightbulbDetailView(houseIndex: $houseIndex, lightbulbs: lightbulbs)
             })
         }//: HSTACK
         .padding(.horizontal, 10)
         .onChange(of: houseIndex) { value in
             readFile()
         }
-        .onAppear(perform: readFile)
+        .onAppear {
+            readFile()
+        }
     }
 
             func readFile() {

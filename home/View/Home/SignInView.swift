@@ -89,7 +89,7 @@ struct SignInView: View {
                             let accessToken = token
                             let data = Data(accessToken.utf8)
                             KeychainService.standard.save(data, service: "access-token", account: "firebase")
-                            ApiService().getUserData(userId: userId) { (result) in
+                            ApiService().getUserData() { (result) in
                                     print(result)
                                     withAnimation {
                                         viewRouter.currentPage = .contentPage

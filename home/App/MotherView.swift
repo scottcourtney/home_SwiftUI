@@ -13,16 +13,16 @@ struct MotherView: View {
         
     // MARK: - BODY
         var body: some View {
-            ContentView()
+//            ContentView()
 
-//            switch viewRouter.currentPage {
-//            case .signUpPage:
-//                SignUpView()
-//            case .signInPage:
-//                SignInView()
-//            case .contentPage:
-//                ContentView()
-//            }
+            switch viewRouter.currentPage {
+            case .signUpPage:
+                SignUpView()
+            case .signInPage:
+                SignInView()
+            case .contentPage:
+                ContentView()
+            }
         }
     }
 

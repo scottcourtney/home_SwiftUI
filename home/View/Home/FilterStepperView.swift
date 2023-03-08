@@ -7,9 +7,16 @@
 
 import SwiftUI
 
+class DismissDisabled: ObservableObject {
+    @Published var state = false
+}
+
 struct FilterStepperView: View {
     
+    @EnvironmentObject var dismissDisabled: DismissDisabled
+    
     @State var filterCount: Int
+    @State private var newFilterCount = 0
 
     var body: some View {
         HStack {
@@ -23,8 +30,18 @@ struct FilterStepperView: View {
                         })
             
             Text(String(filterCount))
-
-            
+                .onChange(of: filterCount) { value in
+                    if filterCount == newFilterCount {
+                        dismissDisabled.state = false
+                        print("old \(String(filterCount))")
+                              } else {
+                                  dismissDisabled.state = true
+                            print("new \(String(filterCount))")
+                        }
+                }
+        }
+        .onAppear {
+            newFilterCount = filterCount
         }
     }
 }

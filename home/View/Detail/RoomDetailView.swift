@@ -13,9 +13,11 @@ struct RoomDetailView: View {
     let room: Room
     
     @Environment(\.dismiss) var dismiss
-    
+    @State private var showFormView: Bool = false
+
     @State var progress: CGFloat = 0
-    
+    @Binding var houseIndex: Int
+
     private let minHeight = 110.0
     private let maxHeight = 372.0
     
@@ -149,16 +151,25 @@ struct RoomDetailView: View {
                     .uppercased())
                 .font(.footnote)
                 
+                Divider()
+                    .foregroundColor(Color.gray)
+                
+                
             }
             .padding(.vertical, 20)
             
             Spacer()
             
             Button(action: {
-                print("open form view")
+                showFormView.toggle()
             }, label: {
                 Text("Edit")
                     .font(.system(size: 20))
+            })
+            .fullScreenCover(isPresented: $showFormView, onDismiss: {
+                
+            }, content: {
+                RoomFormView(houseIndex: $houseIndex, room: room)
             })
             .padding(.trailing, 10)
         }

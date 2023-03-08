@@ -91,7 +91,7 @@ struct SignUpView: View {
                             KeychainService.standard.save(data, service: "access-token", account: "firebase")
                             ApiService().createUser(userId: userId, nickname: "1223 old road", email: userEmail, firstName: "FirstName", lastName: "LastName") { (result) in
                                 if result == true {
-                                    ApiService().getUserData(userId: userId) { (result) in
+                                    ApiService().getUserData() { (result) in
                                         print(result)
                                         withAnimation {
                                             viewRouter.currentPage = .contentPage

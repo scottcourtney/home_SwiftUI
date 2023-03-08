@@ -50,7 +50,8 @@ struct ApplianceView: View {
                 Button(role: .cancel) {
                     print("Cancel")
                 } label: {
-                    Label("Cancel", systemImage: "")
+                    Label("Cancel", systemImage: "x.circle")
+                        .labelStyle(TitleOnlyLabelStyle())
                 }
             }
         })//: BUTTON
