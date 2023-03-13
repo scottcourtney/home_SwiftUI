@@ -16,7 +16,7 @@ struct MiscGridView: View {
     @State private var lightbulbs: [Lightbulb] = []
     @State private var showLightbulbListView: Bool = false
     @State private var showFilterListView: Bool = false
-    
+
     // MARK: - BODY
     
     var body: some View {
@@ -43,7 +43,7 @@ struct MiscGridView: View {
                     
                 )
             })//: BUTTON
-            .sheet(isPresented: $showFilterListView, onDismiss: {
+            .fullScreenCover(isPresented: $showFilterListView, onDismiss: {
                 readFile()
             }, content: {
                 FilterDetailView(filters: filters)
@@ -70,7 +70,8 @@ struct MiscGridView: View {
                         .shadow(color: .black, radius: 2, x: 0, y: 2)
                 )
             })//: BUTTON
-            .sheet(isPresented: $showLightbulbListView, onDismiss: {
+            
+            .fullScreenCover(isPresented: $showLightbulbListView, onDismiss: {
                 readFile()
             }, content: {
                 LightbulbDetailView(houseIndex: $houseIndex, lightbulbs: lightbulbs)

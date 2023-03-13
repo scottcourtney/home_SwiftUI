@@ -13,7 +13,9 @@ struct FilterDetailView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var dismissDisabled = DismissDisabled()
     @State private var isPresentingConfirm: Bool = false
+    @State private var isPresentingAlert: Bool = false
 
+    
     @State private var isEditing = false
     @State private var filterCount: Int = 0
     @State private var date = Date()
@@ -49,8 +51,41 @@ struct FilterDetailView: View {
         NavigationView() {
             VStack {
                 Form {
+                    HStack {
+                        Spacer()
+                        
+                        Button(action: {}, label: {
+                            Text("Add a Filter")
+                        })
+                        .alert("", isPresented: $showAddAlert) {
+                            TextField("Nickname", text: $nickname)
+                            TextField("Size", text: $size)
+                            TextField("Filters Left", text: $filtersLeft)
+                            Button("Submit", action: addFilter)
+                            Button("Cancel", role: .cancel) {}
+                        } message: {
+                            Text("Add a Filter")
+                        }
+                        
+                        Spacer()
+                    }
                     ForEach(filters.indices, id: \.self) { index in
-                        Section(header: Text(filters[index].nickname ?? "N/A")) {
+                        Section(header:
+                                    HStack {
+                            Text(filters[index].nickname ?? "N/A")
+                            Spacer()
+                            Button(action: { showingAlert = true }, label: {
+                                Image(systemName: "x.circle")
+                                    .foregroundColor(Color.red)
+                            }).alert(isPresented: $showingAlert) {
+                                Alert(
+                                    title: Text("Remove \(filters[index].nickname ?? "") from Filters?"),
+                                    primaryButton: .destructive(Text("Delete")) {
+//                                        removeLightbulb(id: lightbulb.id)
+                                    },
+                                    secondaryButton: .cancel())
+                            }
+                        }) {
                             Label {
                                 Text("Size")
                                     .font(.footnote)
@@ -140,45 +175,42 @@ struct FilterDetailView: View {
             }
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading){
-                    Button(action: { showAddAlert = true }, label: {
-                        Image(systemName: "plus")
+                    Button(action: {
+                        if !dismissDisabled.state {
+                            dismiss()
+                        } else {
+                            isPresentingAlert = true
+                        }
+                    }, label: {
+                        Label("Cancel", systemImage: "plus")
+                            .labelStyle(.titleOnly)
                     })//: BUTTON
-                    .alert("", isPresented: $showAddAlert) {
-                        TextField("Nickname", text: $nickname)
-                        TextField("Size", text: $size)
-                        TextField("Filters Left", text: $filtersLeft)
-                        Button("Submit", action: addFilter)
-                        Button("Cancel", role: .cancel) {}
-                    } message: {
-                        Text("Add a Filter")
-                    }
-                    
                 }
                 ToolbarItemGroup(placement: .navigationBarTrailing){
-                    Button(action: { showAddAlert = true }, label: {
+                    Button(action: { save() }, label: {
                         Label("Save", systemImage: "plus")
                             .labelStyle(.titleOnly)
                     })//: BUTTON
-                    .alert("", isPresented: $showAddAlert) {
-                        TextField("Nickname", text: $nickname)
-                        TextField("Size", text: $size)
-                        TextField("Filters Left", text: $filtersLeft)
-                        Button("Submit", action: addFilter)
-                        Button("Cancel", role: .cancel) {}
-                    } message: {
-                        Text("Add a Filter")
-                    }
-                    
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("Filters")
+            .navigationBarTitle("Filters", displayMode: .inline)
         }//: NAVIGATIONVIEW
-        
-        .interactiveDismissDisabled(dismissDisabled.state)
+        .alert("Do you want to save the changes?", isPresented: $isPresentingAlert, actions: {
+            Button("Cancel", role: .destructive, action: {
+                print("Change values back")
+                dismiss()
+            })
+            Button("Save", role: .cancel, action: {
+                print("Save the values")
+                save()
+            })
+        }, message: {
+            Text("Pressing Cancel will remove your changes.")
+        })
     }
-
     
+    
+
     private func removeFilter(id: UUID) {
         print(id)
         filters.removeAll(where: { $0.id == id })
@@ -187,10 +219,12 @@ struct FilterDetailView: View {
     
     private func addFilter() {
         filters.append(Filter(id: UUID(), filtersLeft: Int(filtersLeft), nickname: nickname, size: size, replacedDate: dateFormatter.string(from: futureDate), filterNotification: false, filterReplacementDate: dateFormatter.string(from: futureDate)))
-        save()
     }
     
     private func save() {
+        for filter in filters {
+            print(filter.id)
+        }
         //        let newestLightBulb = lightbulbs.last
         //        ApiService().addLightbulb(
         //            houseId: houses[self.houseIndex].id!,
@@ -205,6 +239,7 @@ struct FilterDetailView: View {
         //                }
         //            }
         //        }
+        dismiss()
     }
     
     private func delete(id: UUID) {
