@@ -414,6 +414,102 @@ class ApiService : ObservableObject {
                 }
         }
     
+    // ADD FILTER
+    func addFilter(
+        houseId: String,
+        id: UUID,
+        filtersLeft: Int,
+        nickname: String,
+        size: String,
+        replacedDate: String,
+        filterNotification: Bool,
+        filterReplacementDate: String,
+        completion: @escaping (Bool) -> ()) {
+            let jwtTokenString = getToken()
+            
+            let params: Parameters = [
+                "collection": COLLECTION,
+                "database": DATABASE,
+                "dataSource": DATASOURCE,
+                "filter": [
+                    "userInfo.user_id": userId!,
+                    "house.house_id": ["$oid": houseId]
+                ],
+                "update": [
+                    "$push": [ "house.$.interior.Misc.filters":
+                                [
+                                    "nickname": nickname,
+                                    "id": id.uuidString,
+                                    "filtersLeft": filtersLeft,
+                                    "size": size,
+                                    "replacedDate": replacedDate,
+                                    "filterNotification": filterNotification,
+                                    "filterReplacementDate": filterReplacementDate,
+                                    
+                                ]
+                             ]
+                ]
+            ]
+            
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json",
+                "jwtTokenString": jwtTokenString
+            ]
+            
+            AF.request(API_URL + "/updateOne", method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
+                .responseJSON { response in
+                    print(response)
+                    DispatchQueue.main.async {
+                        completion(true)
+                    }
+                }
+        }
+    
+    // ADD FILTER
+    func updateFilter(
+        houseId: String,
+        filter: Filter,
+        completion: @escaping (Bool) -> ()) {
+            let jwtTokenString = getToken()
+            
+            let params: Parameters = [
+                "collection": COLLECTION,
+                "database": DATABASE,
+                "dataSource": DATASOURCE,
+                "filter": [
+                    "userInfo.user_id": userId!,
+                    "house.house_id": ["$oid": houseId],
+                    "house.interior.Misc.filters.id": filter.id.uuidString
+                ],
+                "update": [
+                    "$set": [ "house.$.interior.Misc.filters.$[]":
+                                [
+                                    "id": filter.id.uuidString,
+                                    "nickname": filter.nickname,
+                                    "filtersLeft": filter.filtersLeft,
+                                    "size": filter.size,
+                                    "replacedDate": filter.replacedDate,
+                                    "filterNotification": filter.filterNotification,
+                                    "filterReplacementDate": filter.filterReplacementDate,
+                                ]
+                             ]
+                ]
+            ]
+            
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json",
+                "jwtTokenString": jwtTokenString
+            ]
+            
+            AF.request(API_URL + "/updateOne", method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
+                .responseJSON { response in
+                    print(response)
+                    DispatchQueue.main.async {
+                        completion(true)
+                    }
+                }
+        }
+    
     // UPDATE DATA
     // DELETE ROOM
     // DELETE HOUSE

@@ -27,4 +27,5 @@ struct Filter: Codable, Identifiable {
     var replacedDate: String?
     var filterNotification: Bool
     let filterReplacementDate: String?
+    var valueChanged: Bool?
 }

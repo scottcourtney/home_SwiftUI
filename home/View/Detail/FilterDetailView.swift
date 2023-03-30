@@ -23,6 +23,8 @@ struct FilterDetailView: View {
     @State private var replaceNotification = false
     
     @State var filters: [Filter]
+    @State private var houses: [House] = []
+    @Binding var houseIndex: Int
     
     @State private var showingAlert = false
     @State private var showAddAlert = false
@@ -30,8 +32,9 @@ struct FilterDetailView: View {
     @State private var nickname: String = ""
     @State private var size: String = ""
     @State private var filtersLeft: String = ""
+    @State private var newFilterCount = 0
     @State private var replacementDate: String = ""
-    
+        
     let notification = NotificationService()
     
     let dateFormatter: DateFormatter = {
@@ -54,7 +57,10 @@ struct FilterDetailView: View {
                     HStack {
                         Spacer()
                         
-                        Button(action: {}, label: {
+                        Button(action: {
+                            clearAlert()
+                            showAddAlert = true
+                        }, label: {
                             Text("Add a Filter")
                         })
                         .alert("", isPresented: $showAddAlert) {
@@ -86,6 +92,7 @@ struct FilterDetailView: View {
                                     secondaryButton: .cancel())
                             }
                         }) {
+                        
                             Label {
                                 Text("Size")
                                     .font(.footnote)
@@ -102,11 +109,11 @@ struct FilterDetailView: View {
                                 Spacer()
                                 
                                 if let filtersLeft = filters[index].filtersLeft {
-                                    FilterStepperView(filterCount: filtersLeft)
+                                    FilterStepperView(filterCount: filtersLeft, filter: $filters[index])
                                         .environmentObject(dismissDisabled)
 
                                 } else {
-                                    FilterStepperView(filterCount: 0)
+                                    FilterStepperView(filterCount: 0, filter: $filters[index])
                                         .environmentObject(dismissDisabled)
 
                                 }
@@ -143,7 +150,8 @@ struct FilterDetailView: View {
                                         .frame(width: 24, height: 24)
                                 })
                                 
-                            } icon: {}
+                            }
+                            icon: {}
                                                         
                             Toggle(isOn: $filters[index].filterNotification, label: {
                                 Text("Replacement Notification")
@@ -187,28 +195,36 @@ struct FilterDetailView: View {
                     })//: BUTTON
                 }
                 ToolbarItemGroup(placement: .navigationBarTrailing){
-                    Button(action: { save() }, label: {
-                        Label("Save", systemImage: "plus")
+                    Button(action: { updateFilters() }, label: {
+                        Label("Update", systemImage: "plus")
                             .labelStyle(.titleOnly)
                     })//: BUTTON
                 }
             }
             .navigationBarTitle("Filters", displayMode: .inline)
         }//: NAVIGATIONVIEW
+        .onAppear {
+            readFile()
+        }
         .alert("Do you want to save the changes?", isPresented: $isPresentingAlert, actions: {
             Button("Cancel", role: .destructive, action: {
                 print("Change values back")
                 dismiss()
             })
-            Button("Save", role: .cancel, action: {
+            Button("Update", role: .cancel, action: {
                 print("Save the values")
-                save()
+                updateFilters()
             })
         }, message: {
             Text("Pressing Cancel will remove your changes.")
         })
     }
-    
+
+    private func clearAlert() {
+        nickname = ""
+        size = ""
+        filtersLeft = ""
+    }
     
 
     private func removeFilter(id: UUID) {
@@ -219,28 +235,38 @@ struct FilterDetailView: View {
     
     private func addFilter() {
         filters.append(Filter(id: UUID(), filtersLeft: Int(filtersLeft), nickname: nickname, size: size, replacedDate: dateFormatter.string(from: futureDate), filterNotification: false, filterReplacementDate: dateFormatter.string(from: futureDate)))
+        save()
+    }
+    
+    private func updateFilters() {
+        for filter in filters {
+            ApiService().updateFilter(houseId: houses[self.houseIndex].id!, filter: filter) { result in
+                if result == true {
+                    ApiService().getUserData() { (result) in
+                    }
+                }
+            }
+        }
     }
     
     private func save() {
-        for filter in filters {
-            print(filter.id)
+            let newestFilter = filters.last
+            ApiService().addFilter(
+                houseId: houses[self.houseIndex].id!,
+                id: newestFilter?.id ?? UUID(),
+                filtersLeft: newestFilter?.filtersLeft ?? 0,
+                nickname: newestFilter?.nickname ?? "",
+                size: newestFilter?.size ?? "",
+                replacedDate: newestFilter?.replacedDate ?? "",
+                filterNotification: newestFilter?.filterNotification ?? false,
+                filterReplacementDate: newestFilter?.filterReplacementDate ?? ""
+            ) { (result) in
+                if result == true {
+                    ApiService().getUserData() { (result) in
+                    }
+                }
+            }
         }
-        //        let newestLightBulb = lightbulbs.last
-        //        ApiService().addLightbulb(
-        //            houseId: houses[self.houseIndex].id!,
-        //            nickname: newestLightBulb?.nickname ?? "",
-        //            id: newestLightBulb?.id ?? UUID(),
-        //            brand: newestLightBulb?.brand ?? "",
-        //            model: newestLightBulb?.model ?? "",
-        //            watts: newestLightBulb?.watts ?? ""
-        //        ) { (result) in
-        //            if result == true {
-        //                ApiService().getUserData() { (result) in
-        //                }
-        //            }
-        //        }
-        dismiss()
-    }
     
     private func delete(id: UUID) {
         //        ApiService().removeLightbulb(
@@ -275,5 +301,12 @@ struct FilterDetailView: View {
         dateComponent.day = 10
         
         futureDate = Calendar.current.date(byAdding: dateComponent, to: replacedDate)!
+    }
+    
+    private func readFile() {
+        if let jsonData: User = Bundle.main.decode("data.json") {
+            self.houses = (jsonData.document?.house!)!
+//            self.lightbulbs = (jsonData.document.house[houseIndex].interior?.misc?.lightbulbs)
+        }
     }
 }

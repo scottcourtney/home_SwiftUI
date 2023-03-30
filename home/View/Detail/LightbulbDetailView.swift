@@ -125,6 +125,9 @@ struct LightbulbDetailView: View {
                 ApiService().getUserData() { (result) in
                 }
             }
+            else {
+                // TODO: REMOVE LAST LIGHTBULB AND DISPLAY ERROR MESSAGE
+            }
         }
     }
     

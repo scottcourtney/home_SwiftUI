@@ -43,10 +43,10 @@ struct MiscGridView: View {
                     
                 )
             })//: BUTTON
-            .fullScreenCover(isPresented: $showFilterListView, onDismiss: {
+            .sheet(isPresented: $showFilterListView, onDismiss: {
                 readFile()
             }, content: {
-                FilterDetailView(filters: filters)
+                FilterDetailView(filters: filters, houseIndex: $houseIndex)
             })
             
             Spacer()

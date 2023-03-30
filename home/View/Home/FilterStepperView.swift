@@ -17,31 +17,33 @@ struct FilterStepperView: View {
     
     @State var filterCount: Int
     @State private var newFilterCount = 0
+    @Binding var filter: Filter
 
     var body: some View {
         HStack {
                 
             Stepper("", onIncrement: {
-                            filterCount += 1
+                filter.filtersLeft! += 1
                         }, onDecrement: {
-                            if filterCount >= 1 {
-                                filterCount -= 1
+                            if filter.filtersLeft! >= 1 {
+                                filter.filtersLeft! -= 1
                             }
                         })
             
-            Text(String(filterCount))
-                .onChange(of: filterCount) { value in
-                    if filterCount == newFilterCount {
+            Text(String(filter.filtersLeft!))
+                .onChange(of: filter.filtersLeft) { value in
+                    if filter.filtersLeft == newFilterCount {
                         dismissDisabled.state = false
-                        print("old \(String(filterCount))")
+                        print("old \(String(filter.filtersLeft!))")
                               } else {
                                   dismissDisabled.state = true
-                            print("new \(String(filterCount))")
+                            print("new \(String(filter.filtersLeft!))")
                         }
                 }
         }
         .onAppear {
-            newFilterCount = filterCount
+            newFilterCount = filter.filtersLeft!
         }
+        
     }
 }
